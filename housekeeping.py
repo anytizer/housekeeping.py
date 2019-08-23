@@ -233,13 +233,4 @@ def api_amenities_remove():
 if __name__ == "__main__":
     # python3 housekeeping.py >> log.txt 2>&1 &
     # ps aux | grep housekeeping
-
-    # http://192.168.0.101:5000/#!/missing
-    
-    #app.run(host="192.168.1.80", port=5000, debug=True)
-    #app.run(host="192.168.1.76", port=5000, debug=True)
-    #app.run(host="192.168.0.101", port=5000, debug=True)
     app.run(host="0.0.0.0", port=5000, debug=True)
-    #app.run(port=1001, debug=True)
-    #app.run(debug=True)
- 
