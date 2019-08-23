@@ -14,7 +14,7 @@ List of amenities and stuffs forgotten by your housekeeping department.
  * List of amenities that the associates forgot to replace on specified dates and rooms.
  * Data Entry
  * Reports
- * Printer friendly
+ * All pages are printer friendly
 
 ## Scripts
  * [realer.py](realer.py) - Installs the database contents.
@@ -26,8 +26,19 @@ List of amenities and stuffs forgotten by your housekeeping department.
  * Install pip 3.
  * Install Flask: `pip install flask`
  * Checkout this project using Git.
+ * cd housekeeping.py
+ * Edit realer.py with your associates and amenities.
  * Run `python3 realer.py`
- * Run sample data: `python3 faker.py`
+ * Optionally, run sample data: `python3 faker.py`
  * Run the script from terminal: `python3 housekeeping.py`
- * Browse the website: http://0.0.0.0:5000/ with your own IP Addresses over LAN
+ * Browse the website: http://0.0.0.0:5000/ with your own IP Addresses over the LAN
  * Port 5000 - This is the default port number to access the website
+
+### Operations
+ * Forgotten data entry
+ * Reports for today
+ * Whole reports of amenities forgotten
+ * List of associates
+   - Number of records
+   - enter new forgotten amenity
+ * List of amentities for suggestions
