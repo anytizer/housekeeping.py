@@ -1,5 +1,5 @@
 # housekeeping.py
-List of items forgotten
+List of items forgotten by your housekeeping department.
 
 ## Requirements:
  * [Python 3](https://www.python.org/downloads/), [Flask](https://palletsprojects.com/p/flask/)
@@ -18,6 +18,12 @@ List of items forgotten
  * [housekeeping.py](housekeeping.py) - Main web server scripts
  * Port 5000 - This is the default port number to access the website
 
-### Operations
+### Installation
+ * Install python 3.
+ * Install pip 3.
+ * Install Flask: `pip install flask`
+ * Checkout this project using Git.
+ * Run `python3 realer.py`
+ * Run sample data: `python3 faker.py`
  * Run the script from terminal: `python3 housekeeping.py`
  * Browse the website: http://0.0.0.0:5000/ with your own IP Addresses over LAN
