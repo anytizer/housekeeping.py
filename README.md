@@ -2,7 +2,8 @@
 List of amenities and stuffs forgotten by your housekeeping department.
 
 ## Built Using:
- * [Python 3](https://www.python.org/downloads/), [Flask](https://palletsprojects.com/p/flask/)
+ * [Python 3](https://www.python.org/downloads/)
+ * [Flask](https://palletsprojects.com/p/flask/)
  * [AngularJS](https://angularjs.org/)
  * [SQLite 3](https://www.sqlite.org/)
  * [W3CSS](https://www.w3schools.com/w3css/)
