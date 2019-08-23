@@ -1,7 +1,7 @@
 # housekeeping.py
-List of items forgotten by your housekeeping department.
+List of amenities and stuffs forgotten by your housekeeping department.
 
-## Requirements:
+## Built Using:
  * [Python 3](https://www.python.org/downloads/), [Flask](https://palletsprojects.com/p/flask/)
  * [AngularJS](https://angularjs.org/)
  * [SQLite 3](https://www.sqlite.org/)
@@ -11,12 +11,14 @@ List of items forgotten by your housekeeping department.
  * List of amenities
  * List of Associates (Workers)
  * List of amenities that the associates forgot to replace on specified dates and rooms.
+ * Data Entry
+ * Reports
+ * Printer friendly
 
-## Running
+## Scripts
  * [realer.py](realer.py) - Installs the database contents.
  * [faker.py](faker.py) - Installs dummy data, optional
  * [housekeeping.py](housekeeping.py) - Main web server scripts
- * Port 5000 - This is the default port number to access the website
 
 ### Installation
  * Install python 3.
@@ -27,3 +29,4 @@ List of items forgotten by your housekeeping department.
  * Run sample data: `python3 faker.py`
  * Run the script from terminal: `python3 housekeeping.py`
  * Browse the website: http://0.0.0.0:5000/ with your own IP Addresses over LAN
+ * Port 5000 - This is the default port number to access the website
