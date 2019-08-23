@@ -1,0 +1,42 @@
+<div class="w3-container w3-teal">
+	<h1>Amenities</h1>
+</div>
+
+<form method="post" class="no-print" name="amenities-form" autocomplete="off">
+<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+	<thead class="w3-yellow">
+		<tr>
+			<th>Amenity Name</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="w3-input w3-border" type="text" id="amenity-name" name="amenity" ng-model="amenity.name" placeholder="Amenity Name" /></td>
+			<td><button class="w3-btn w3-indigo" ng-click="save(amenity)">Add Amenity</button></td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
+<p class="w3-padding no-print"><strong>Notes:</strong> Amenities you enter here will be available as suggestion for missing stuffs in <a ui-sref="missing({})">data entry page</a>. We already have the following amenities sorted alphabetically.</p>
+
+<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+	<thead class="w3-yellow">
+		<tr>
+			<th>S.N.</th>
+			<th>Amenity Name</th>
+			<th class="no-print">Remove Amenity</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(a, amenity) in amenities">
+			<td>{{a+1}}</td>
+			<td>{{amenity[1]}}</td>
+			<td class="no-print"><a class="w3-btn w3-red" ng-click="remove(amenity)">Wrong Entry</td>
+		</tr>
+	</tbody>
+</table>
+<!--{{amenities}}-->
+
+<p class="w3-padding" ng-show="!amenities.length"><strong>Notes:</strong> No amenties in the list.</p>

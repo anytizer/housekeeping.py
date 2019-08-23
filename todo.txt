@@ -1,0 +1,6 @@
+Respond with JS/CSS/HTML content types when using static.
+Route robots, favicon
+Auto select associate in data entry page if came through associate listing.
+Hire an associate
+Clear who.associate once data entered.
+Do not allow to data enter very old dates.

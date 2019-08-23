@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Housekeeping - Amenities Forgotten</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/w3.css')}}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}" />
+  
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+  
+  <script type="text/javascript" src="{{url_for('static', filename = 'js/angularjs/angular.min.js')}} "></script>
+  <script type="text/javascript" src="{{url_for('static', filename = 'js/angularjs/angular-sanitize.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename = 'js/ui-router/angular-ui-router.min.js')}} "></script>
+  <script type="text/javascript" src="{{url_for('static', filename = 'js/ui-router/stateEvents.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename = 'js/sortable.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename = 'js/app.js')}}"></script>
+
+</head>
+<body ng-app="myApp">
+  
+  	<div class="wrapper">
+		<div class="w3-black no-print menus">
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missing">Data Entry</a>
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missingreports">Reports</a>
+			<a class="w3-btn " ui-sref-active="w3-teal" ui-sref="associates">Associates</a>
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="amenities">Amenities</a>
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="configs">Configurations</a>
+			<a class="w3-btn w3-right" onclick="window.print();">Print</a>
+		</div>
+
+		<div>
+			<ui-view></ui-view>
+		</div>
+	</div>
+
+</body>
+</html>

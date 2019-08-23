@@ -1,0 +1,24 @@
+@media print
+{    
+    .no-print
+    {
+        display: none;
+    }
+}
+
+*
+{
+	border: none;
+	outline: none;
+}
+
+thead { cursor: pointer; }
+td { vertical-align: top; }
+
+strong { color: red; }
+
+.select
+{
+    min-width: 200px;
+    background-color: #EEE;
+}
