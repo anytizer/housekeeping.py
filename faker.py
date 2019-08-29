@@ -27,7 +27,7 @@ for i in range(1, 2000):
     missingstuffs = random.choice(["", amenity_info[0],])
 
     # area not cleaned
-    anc = random.choice(["", random.choice(["washroom", "floor", "window", "cabinets", "entrance", "lobby", "sofa"])])
+    anc = random.choice(["", random.choice(["washroom", "sink", "floor", "window", "cabinets", "entrance", "lobby", "sofa"])])
 
     remarks = random.choice(["", random.choice(["stain", "hair", "dusts", "bugs"])])
 
@@ -36,7 +36,7 @@ for i in range(1, 2000):
     deleted = 0
 
     # Portion of live code
-    fields = (id, data["associate"], data["room_number"], data["missingstuffs"], data["anc"], data["remarks"], data["date"], deleted,)
+    fields = (id, data["associate"], data["room_number"], data["missingstuffs"].upper(), data["anc"], data["remarks"], data["date"], deleted,)
     cursor.execute("INSERT INTO missing VALUES (?, DATETIME('NOW', 'LOCALTIME'), ?, ?, ?, ?, ?, ?, ?)", fields)
 
 cleanup_sql="DELETE FROM missing WHERE missingstuffs=? AND anc=? AND remarks=?;"

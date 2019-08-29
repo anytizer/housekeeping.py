@@ -113,7 +113,7 @@ def api_missing_save():
 
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
-    fields = (id, data["associate"], data["room_number"], data["missingstuffs"], data["anc"], data["remarks"], data["date"], 0)
+    fields = (id, data["associate"], data["room_number"], data["missingstuffs"].upper(), data["anc"], data["remarks"], data["date"], 0)
     cursor.execute("INSERT INTO missing VALUES (?, DATETIME('NOW', 'LOCALTIME'), ?, ?, ?, ?, ?, ?, ?)", fields)
     connection.commit()
     connection.close()
@@ -243,22 +243,6 @@ def api_amenities_list():
     return json.dumps(data)
 
 
-# http://127.0.0.1:5000/api/amenities/save
-@app.route("/api/amenities/save", methods=["POST"])
-def api_amenities_save():
-    data = json.loads(request.data.decode())
-    id = str(uuid.uuid4()).upper()
-
-    connection = sqlite3.connect(DATABASE)
-    cursor = connection.cursor()
-    fields = (id, data["name"], 0,)
-    cursor.execute("INSERT INTO amenities VALUES (?, ?, ?)", fields)
-    connection.commit()
-    connection.close()
-
-    return "Amentiy saved"
-
-
 # http://127.0.0.1:5000/api/amenities/remove
 @app.route("/api/amenities/remove", methods=["POST"])
 def api_amenities_remove():
@@ -272,6 +256,49 @@ def api_amenities_remove():
 
     return "Amentiy deleted"
 
+
+# http://127.0.0.1:5000/api/amenities/save
+@app.route("/api/amenities/save", methods=["POST"])
+def api_amenities_save():
+    data = json.loads(request.data.decode())
+    id = str(uuid.uuid4()).upper()
+
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    fields = (id, data["name"].upper(), 0,)
+    cursor.execute("INSERT INTO amenities VALUES (?, ?, ?)", fields)
+    connection.commit()
+    connection.close()
+
+    return "Amentiy saved"
+
+
+# http://127.0.0.1:5000/api/amenities/import
+@app.route("/api/amenities/import", methods=["POST"])
+def api_amenities_import():
+# get list of amenties
+# for each amenity
+# if not exist in destination
+# insert
+    
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    suggestions_sql="SELECT UPPER(missingstuffs) amenity, COUNT(missingstuffs) total FROM missing GROUP BY UPPER(missingstuffs) ORDER BY amenity;"
+    cursor.execute(suggestions_sql, ())
+    data = cursor.fetchall()
+
+    for amenity in data:
+        check_sql="SELECT * FROM amenities WHERE amenity_name=?;"
+        cursor.execute(check_sql, (amenity[0],))
+        existing = cursor.fetchone()
+        if not existing:
+            id = str(uuid.uuid4()).upper()
+            fields = (id, amenity[0].upper(), 0,)
+            cursor.execute("INSERT INTO amenities VALUES (?, ?, ?)", fields)
+    
+    connection.commit()
+    connection.close()
+    return json.dumps(data)
 
 if __name__ == "__main__":
     # python3 housekeeping.py >> log.txt 2>&1 &

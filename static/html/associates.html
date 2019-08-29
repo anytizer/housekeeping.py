@@ -1,32 +1,11 @@
-<div class="w3-container w3-teal">
+<div class="w3-yellow w3-padding no-print">
+	<a class="w3-blue w3-btn" ui-sref="associates.list({})">List Associates</a>
+</div>
+
+<div class="w3-container w3-teal no-print">
 	<h1>Associates</h1>
 </div>
 
-<!--
-{{associates}}
--->
-
-<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-	<thead class="w3-yellow">
-		<tr>
-			<th>S.N.</th>
-			<th>Associate (Name)</th>
-			<th>View Records</th>
-			<th class="no-print">Data Entry</th>
-			<th class="no-print">Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="(a, associate) in associates">
-			<td>{{a+1}}</td>
-			<td>{{associate[1]}}</td>
-			<td><a ui-sref="associate({id: associate[0]})">{{associate[2]}} records</a></td>
-			<td class="no-print"><a ui-sref="missing.who({who: associate[1]})">Forgot Something</a></td>
-			<td class="no-print"><a class="w3-btn w3-red" ng-click="fire(associate)">Fire</a></td>
-		</tr>
-	</tbody>
-</table>
-
-<div class="w3-container">
-	<p><strong>Notes:</strong> Please contact your admin to make changes in this list, or <a ui-sref="associates.hire({})">hire somebody</a>.</p>
+<div>
+	<ui-view></ui-view>
 </div>

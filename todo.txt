@@ -1,6 +1,14 @@
 Respond with JS/CSS/HTML content types when using static.
 Route robots, favicon
-Auto select associate in data entry page if came through associate listing.
 Hire an associate
 Clear who.associate once data entered.
-Do not allow to data enter very old dates.
+Credits to icons, favicon
+From amenities to data entry page with pre-selection.
+If amenity is repeated, use single instance only in the reports - case sensitive
+COLLATE NOCASE
+/amenities should display amenities/list.
+/missing should display missign/list.
+Date sync necessary for a timezone. Entered/Reflected difference.
+No HTML5 support in Safari.
+Select box stylizing in Safari.
+Add hours worked by an associate - to calculate efficiency.

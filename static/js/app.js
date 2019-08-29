@@ -28,6 +28,14 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     name: "associates",
     url: "/associates",
     templateUrl: "/html/associates",
+    //controller: "",
+    controller: function($state){$state.go(".list");},
+  });
+  
+  $stateProvider.state({
+    name: "associates.list",
+    url: "/list",
+    templateUrl: "/html/associates-list",
     controller: "AssociatesController",
   });
   
@@ -39,9 +47,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   });
 
   $stateProvider.state({
-    name: "associate",
-    url: "/associate/:id",
-    templateUrl: "/html/associate",
+    name: "associates.individual",
+    url: "/individual/:id",
+    templateUrl: "/html/associates-individual",
     controller: "AssociateReportingController",
   });
 
@@ -49,6 +57,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     name: "amenities",
     url: "/amenities",
     templateUrl: "/html/amenities",
+	controller: function($state){$state.go(".list");},
   });
   
   $stateProvider.state({
@@ -56,6 +65,13 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     url: "/add",
     templateUrl: "/html/amenities-add",
     controller: "AmenitiesAddController",
+  });
+  
+  $stateProvider.state({
+    name: "amenities.import",
+    url: "/import",
+    templateUrl: "/html/amenities-import",
+    controller: "AmenitiesImportController",
   });
   
   $stateProvider.state({
@@ -175,6 +191,13 @@ myApp.service("APIService", ["$http", function($http) {
 				data: data
 			});
 		},
+		"amenities_import": function(data){
+			return $http({
+				method: "POST",
+				url: api+"/amenities/import",
+				data: data
+			});
+		},
 		"configs_list": function(data){
 			return $http({
 				method: "POST",
@@ -201,6 +224,7 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
 	}
 	var dateControl = document.querySelector('input[type="date"]');
 	dateControl.max = yyyy + "-" + mm + "-" + dd;
+	// @todo MIN not working
 	//dateControl.min = "2019-08-01"; // yyyy + "-" + mm + "-" + dd;
 	
 	
@@ -413,11 +437,26 @@ myApp.controller("AmenitiesAddController", ["$scope", "$state", "$stateParams", 
 	    });
     };
 }]);
+
+
+myApp.controller("AmenitiesImportController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
+	if(window.confirm("Are you sure?"))
+	{
+		APIService.amenities_import()
+		.then(function(response){
+			$state.go("amenities.list");
+		}, function(error){
+			alert("Error importing amenities from missing stuffs...");
+		});
+	}
+	else
+	{
+		$state.go("amenities.list");
+	}
+}]);
+
 	
 myApp.controller("AmenitiesReportController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
-	// amenity
-	//alert("Viewing: "+$stateParams.amenity);
-	//console.log($stateParams);
 	$scope.amenity = $stateParams.amenity;
 	$scope.missingdata = [];
 	$scope.list = function()
@@ -431,6 +470,7 @@ myApp.controller("AmenitiesReportController", ["$scope", "$state", "$stateParams
     };
 	$scope.list();
 }]);
+
 
 myApp.controller("ConfigsController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
     $scope.configs = [];

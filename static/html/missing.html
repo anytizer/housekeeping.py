@@ -43,7 +43,7 @@
 			<td><input class="w3-input w3-border" type="text" name="anc" maxlength="20" ng-model="missing.anc" placeholder="Notes"></td>
 			<td><input class="w3-input w3-border" type="text" name="remarks" maxlength="20" ng-model="missing.remarks" placeholder="Remarks"></td>
 			<td>
-				<button class="w3-btn w3-indigo" ng-click="save(missing)">
+				<button class="w3-btn w3-blue" ng-click="save(missing)">
 					<span ng-show="missing.associate"><span style="color:yellow;">{{missing.associate}}</span> - Forgot</span>
 					<span ng-hide="missing.associate">Confirm Forgotten</span>
 				</button>
@@ -88,7 +88,7 @@
 			<td>{{missing[4]|limitTo:20}}</td>
 			<td>{{missing[5]|limitTo:20}}</td>
 			<td>{{missing[6]|limitTo:20}}</td>
-			<td class="no-print"><span class="w3-btn w3-red" ng-click="remove(missing[0])">Remove</span></td>
+			<td class="no-print"><span class="w3-btn w3-red" ng-click="remove(missing[0])">Wrong Entry</span></td>
 			<!--
 			<td>{{missing.date}}</td>
 			<td>{{missing.associate}}</td>
