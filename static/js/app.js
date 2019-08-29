@@ -49,7 +49,27 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     name: "amenities",
     url: "/amenities",
     templateUrl: "/html/amenities",
-    controller: "AmenitiesController",
+  });
+  
+  $stateProvider.state({
+    name: "amenities.add",
+    url: "/add",
+    templateUrl: "/html/amenities-add",
+    controller: "AmenitiesAddController",
+  });
+  
+  $stateProvider.state({
+    name: "amenities.list",
+    url: "/list",
+    templateUrl: "/html/amenities-list",
+    controller: "AmenitiesListController",
+  });
+
+  $stateProvider.state({
+    name: "amenities.report",
+    url: "/report/:amenity",
+    templateUrl: "/html/amenities-report",
+    controller: "AmenitiesReportController",
   });
 
   $stateProvider.state({
@@ -72,7 +92,6 @@ myApp.service("APIService", ["$http", function($http) {
 			});
 		},
 		"missing_remove": function(data){
-			//alert(data.id);
 			return $http({
 				method: "POST",
 				url: api+"/missing/remove",
@@ -114,10 +133,24 @@ myApp.service("APIService", ["$http", function($http) {
 				data: data
 			});
 		},
+		"associates_amenities": function(data){
+			return $http({
+				method: "POST",
+				url: api+"/associates/amenities",
+				data: data
+			});
+		},
 		"missing_reports_individual": function(data){
 			return $http({
 				method: "POST",
 				url: api+"/missing/reports/individual",
+				data: data
+			});
+		},
+		"missing_reports_amenity": function(data){
+			return $http({
+				method: "POST",
+				url: api+"/missing/reports/amenity",
 				data: data
 			});
 		},
@@ -287,8 +320,6 @@ myApp.controller("AssociatesController", ["$scope", "$state", "$stateParams", "A
 				});
 			}, promises);
 
-
-
 	    }, function(error){
 			alert("Error loading associates data...");
 	    });
@@ -329,36 +360,28 @@ myApp.controller("AssociateReportingController", ["$scope", "$state", "$statePar
 }]);
 
 
-myApp.controller("AmenitiesController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
+myApp.controller("AmenitiesListController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
     $scope.amenities = [];
 	$scope.amenities_list = function()
     {
 		APIService.amenities_list()
 		.then(function(response){
 			$scope.amenities = response.data;
+			var promises=[];
+			angular.forEach(response.data, function(value, key) {
+				APIService.associates_amenities({"amenity": value[1]})
+				.then(function(response_individual){
+					value.push(response_individual.data[0]);
+				}, function(error){
+				});
+			}, promises);
+			
 	    }, function(error){
 			alert("Error loading amenities data...");
 	    });
-	    
-	    document.getElementById("amenity-name").focus();
     };
 	$scope.amenities_list();
 
-	$scope.amenity = {"name": ""};
-	$scope.save = function(amenity)
-    {
-		if(amenity.name=="") return false;
-		if(amenity.name=="-") return false;
-
-		APIService.amenities_save(amenity)
-		.then(function(response){
-			$scope.amenity = {"name": ""};
-			$scope.amenities_list();
-	    }, function(error){
-			alert("Error saving amenity data...");
-	    });
-    };
-	
 	$scope.remove = function(amenity)
     {
 		if(window.confirm("Remove record?"))
@@ -373,6 +396,41 @@ myApp.controller("AmenitiesController", ["$scope", "$state", "$stateParams", "AP
     };
 }]);
 
+
+myApp.controller("AmenitiesAddController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
+	$scope.amenity = {"name": ""};
+	$scope.save = function(amenity)
+    {
+		if(amenity.name=="") return false;
+		if(amenity.name=="-") return false;
+
+		APIService.amenities_save(amenity)
+		.then(function(response){
+			$scope.amenity = {"name": ""};
+			$state.go("amenities.list");
+	    }, function(error){
+			alert("Error saving amenity data...");
+	    });
+    };
+}]);
+	
+myApp.controller("AmenitiesReportController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
+	// amenity
+	//alert("Viewing: "+$stateParams.amenity);
+	//console.log($stateParams);
+	$scope.amenity = $stateParams.amenity;
+	$scope.missingdata = [];
+	$scope.list = function()
+    {
+		APIService.missing_reports_amenity({"amenity": $stateParams.amenity})
+		.then(function(response){
+			$scope.missingdata = response.data;
+	    }, function(error){
+			alert("Error loading missing data...");
+	    });
+    };
+	$scope.list();
+}]);
 
 myApp.controller("ConfigsController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
     $scope.configs = [];

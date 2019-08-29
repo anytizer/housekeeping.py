@@ -1,0 +1,27 @@
+<p class="w3-padding no-print"><strong>Notes:</strong> Entries will appear as suggestion in <a ui-sref="missing({})">data entry page</a>. We already have the following amenities sorted alphabetically.</p>
+
+<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+	<thead class="w3-yellow">
+		<tr>
+			<th>S.N.</th>
+			<th>Amenity Name</th>
+			<th>Cases</th>
+			<th>Report</th>
+			<th class="no-print">Remove Amenity</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(a, amenity) in amenities">
+			<td>{{a+1}}</td>
+			<td>{{amenity[1]}}</td>
+			<td>{{amenity[2]}} cases</td>
+			<td><a ui-sref="amenities.report({'amenity': amenity[1]})">Report</a></td>
+			<td class="no-print"><a class="w3-btn w3-red" ng-click="remove(amenity)">Wrong Entry</td>
+		</tr>
+	</tbody>
+</table>
+<!--{{amenities}}-->
+
+<div class="w3-container" ng-show="!amenities.length">
+	<p><strong>Notes:</strong> No amenties in the list.</p>
+</div>

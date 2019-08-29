@@ -1,0 +1,16 @@
+<form method="post" class="no-print" name="amenities-form" autocomplete="off">
+<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+	<thead class="w3-yellow">
+		<tr>
+			<th>Amenity Name</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input class="w3-input w3-border" type="text" id="amenity-name" name="amenity" ng-model="amenity.name" placeholder="Amenity Name" /></td>
+			<td><button class="w3-btn w3-indigo" ng-click="save(amenity)">Add Amenity</button></td>
+		</tr>
+	</tbody>
+</table>
+</form>

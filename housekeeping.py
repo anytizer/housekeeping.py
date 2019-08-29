@@ -36,7 +36,7 @@ def html_templates_for_angularjs(rawpath=""):
         with open(template_file, "r") as f:
             html = f.read()
     else:
-        html = "Template file not found." # {0} and {1}".format(rawpath, template_file)
+        html = "Template file not found. {0} and {1}".format(rawpath, template_file)
 
     #return html
     r = Response(response=html, status=200, mimetype="text/html")
@@ -82,6 +82,21 @@ def api_missing_reports_individual():
     #print("Associate found: ", associate)
     
     cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND associate=? ORDER BY date DESC LIMIT ?;", (associate[0], LIMITS,))
+    data = cursor.fetchall()
+    connection.close()
+
+    return json.dumps(data)
+
+
+# Individual report of an amenity
+# http://127.0.0.1:5000/api/missing/reports/amenity
+@app.route("/api/missing/reports/amenity", methods=["POST"])
+def api_missing_reports_amenity():
+    data = json.loads(request.data.decode())
+    #print("Data received: ", data)
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND missingstuffs=? ORDER BY date DESC LIMIT ?;", (data["amenity"], LIMITS,))
     data = cursor.fetchall()
     connection.close()
 
@@ -145,7 +160,7 @@ def api_associate_details():
     return json.dumps(data)
 
 # http://127.0.0.1:5000/api/associates/entries
-@app.route("/api/associates/entries", methods=["GET", "POST"])
+@app.route("/api/associates/entries", methods=["POST"])
 def api_associates_entries():
     data = json.loads(request.data.decode())
 
@@ -153,12 +168,13 @@ def api_associates_entries():
     cursor = connection.cursor()
     sql = """
 SELECT
-	a.associate_id,
-	a.associate_name,
-	COUNT(*) entries
+    a.associate_id,
+    a.associate_name,
+    COUNT(*) entries
 FROM missing m
 INNER JOIN associates a ON a.associate_name = m.associate
-WHERE m.deleted=? AND a.associate_id=?
+WHERE
+    m.deleted=? AND a.associate_id=?
 GROUP BY a.associate_name
 ORDER BY a.associate_name ASC;
 """
@@ -168,9 +184,36 @@ ORDER BY a.associate_name ASC;
     connection.close()
 
     if not report:
-        report = ["", "", 0]
+        report = ["", "", 0,]
 
     return json.dumps(report)
+
+
+# http://127.0.0.1:5000/api/associates/amenities
+@app.route("/api/associates/amenities", methods=["POST"])
+def api_associates_amenities():
+    data = json.loads(request.data.decode())
+
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    sql = """
+SELECT
+	COUNT(*) total
+FROM missing m
+INNER JOIN amenities a ON a.amenity_name = m.missingstuffs
+WHERE
+	a.amenity_name=?
+;"""
+    #print(sql, data)
+    cursor.execute(sql, (data["amenity"],))
+    report = cursor.fetchone()
+    connection.close()
+
+    if not report:
+        report = [0,]
+
+    return json.dumps(report)
+
 
 
 # http://127.0.0.1:5000/api/configs/list
