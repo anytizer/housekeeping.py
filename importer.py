@@ -19,7 +19,10 @@ last_associate = list(data[0])[2]
 
 destination = sqlite3.connect("housekeeping.db")
 dcursor = destination.cursor()
-dcursor.execute("DELETE FROM missing;", ())
+
+# @todo DO NOT delete records when importing separate data set
+# dcursor.execute("DELETE FROM missing;", ())
+
 insert_sql="""
 INSERT INTO missing (
     id, created_on,
@@ -57,6 +60,7 @@ for raw1 in data:
 print("Inserting the records...")
 
 # Adjustments
+# @todo Use fixer.sql
 dcursor.execute("UPDATE missing SET missingstuffs='Pens' WHERE missingstuffs='Pen';")
 dcursor.execute("UPDATE missing SET missingstuffs='Bath Mat' WHERE missingstuffs='bath mat';")
 dcursor.execute("UPDATE missing SET missingstuffs='Ice Bag' WHERE missingstuffs='Ice bag';")

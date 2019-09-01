@@ -2,3 +2,4 @@
 /backup.db
 /backup-*.db
 /realer.live.py
+/__pycache__

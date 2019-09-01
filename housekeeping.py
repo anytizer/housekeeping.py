@@ -4,48 +4,80 @@ import json
 import sys
 import sqlite3
 import uuid
+import datetime
 from os import path
 
-APP_ROOT = "."
-#APPROOT = "/home/tutor/Desktop/housekeeping"
-DATABASE = "./housekeeping.db"
+app = Flask(__name__)
+
+ROOT_PATH = app.root_path
+
+DATABASE = ROOT_PATH+"/housekeeping.db"
 LIMITS = 400
 
-app = Flask(__name__)
 # app = Flask(__name__, static_folder='static', static_url_path='')
 # https://flask-httpauth.readthedocs.io/en/latest/
 
 #app.add_url_rule("/favicon.ico", redirect_to=url_for("static", filename="favicon.ico"))
 
+
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("housekeeping.html")
+    timestamp = str(datetime.datetime.now().date())
+    return render_template("housekeeping.html", timestamp=timestamp)
+
+
+# prints app root path
+# http://127.0.0.1:5000/test
+@app.route("/test", methods=["GET"])
+def test():
+    return app.root_path
+
+
+# SET FLASK_APP = "housekeeping.py"
+# flask routes > routes.txt
+@app.route("/endpoints", methods=["GET"])
+def endpoints():
+    links = []
+    for rule in app.url_map.iter_rules():
+        #print(rule)
+        # rule.methods
+        #url = url_for(rule.endpoint, **(rule.defaults or {}))
+        #links.append((url, rule.endpoint))
+        links.append({"endpoint":rule.endpoint, "method":rule.methods})
+    #links.sort()
+
+    #return str(links)
+    # json.dumps(links)
+    r = Response(response=str(links), status=200, mimetype="application/json")
+    r.headers["Content-Type"] = "application/json; charset=utf-8"
+    return r
 
 
 # http://127.0.0.1:5000/html/configs ==> static/html/configs.html
 @app.route("/html/<string:rawpath>", methods=["GET"])
 def html_templates_for_angularjs(rawpath=""):
-    html = ""
-
     # prevent hacks to download other unspefied files
+    #replaces = ["\\", "/", "..", "."]
     rawpath = rawpath.replace("/", "")
+    rawpath = rawpath.replace("\\", "")
     rawpath = rawpath.replace("..", "")
     rawpath = rawpath.lower()
-    template_file = "{0}/static/html/{1}.html".format(APP_ROOT, rawpath)
+    template_file = "{0}/static/html/{1}.html".format(ROOT_PATH, rawpath)
+
+    html = ""
     if path.isfile(template_file):
         with open(template_file, "r") as f:
             html = f.read()
     else:
-        html = "Template file not found. {0} and {1}".format(rawpath, template_file)
+        html = "Template file not found. {0} and {1}. Check for <strong>spelling errors</strong>, or <strong>JS</strong> being cached.".format(rawpath, template_file)
 
-    #return html
     r = Response(response=html, status=200, mimetype="text/html")
     r.headers["Content-Type"] = "text/html; charset=utf-8"
     return r
 
 
 # http://127.0.0.1:5000/api/missing/list
-@app.route("/api/missing/list", methods=["GET", "POST"])
+@app.route("/api/missing/list", methods=["POST"])
 def api_missing_list():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
@@ -57,11 +89,11 @@ def api_missing_list():
 
 
 # http://127.0.0.1:5000/api/missing/reports
-@app.route("/api/missing/reports", methods=["GET", "POST"])
+@app.route("/api/missing/reports", methods=["POST"])
 def api_missing_reports():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
-    cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=? ORDER BY date DESC LIMIT ?;", (0, LIMITS,))
+    cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=? ORDER BY `date` DESC, associate ASC, room_number ASC LIMIT ?;", (0, LIMITS,))
     data = cursor.fetchall()
     connection.close()
 
@@ -77,11 +109,11 @@ def api_missing_reports_individual():
 
     # get unique name of the associate
     cursor = connection.cursor()
-    cursor.execute("select associate_name name from associates where associate_id=? LIMIT 1;", (data["id"],))
+    cursor.execute("SELECT associate_name NAME FROM associates WHERE associate_id=? LIMIT 1;", (data["id"],))
     associate = cursor.fetchone()
     #print("Associate found: ", associate)
     
-    cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND associate=? ORDER BY date DESC LIMIT ?;", (associate[0], LIMITS,))
+    cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND associate=? ORDER BY DATE DESC LIMIT ?;", (associate[0], LIMITS,))
     data = cursor.fetchall()
     connection.close()
 
@@ -96,7 +128,8 @@ def api_missing_reports_amenity():
     #print("Data received: ", data)
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
-    cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND missingstuffs=? ORDER BY date DESC LIMIT ?;", (data["amenity"], LIMITS,))
+    sql = "SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND missingstuffs=? ORDER BY date DESC LIMIT ?;"
+    cursor.execute(sql, (data["amenity"], LIMITS,))
     data = cursor.fetchall()
     connection.close()
 
@@ -118,11 +151,11 @@ def api_missing_save():
     connection.commit()
     connection.close()
 
-    return "Missing record saved"
+    return "Missing stuffs saved"
 
 
 # http://127.0.0.1:5000/api/missing/remove
-@app.route("/api/missing/remove", methods=["GET", "POST"])
+@app.route("/api/missing/remove", methods=["POST"])
 def api_missing_remove():
     data = json.loads(request.data.decode())
 
@@ -132,15 +165,15 @@ def api_missing_remove():
     connection.commit()
     connection.close()
 
-    return "Deleted"
+    return "Deleted a wrong entry"
     
 
 # http://127.0.0.1:5000/api/associates/list
-@app.route("/api/associates/list", methods=["GET", "POST"])
+@app.route("/api/associates/list", methods=["POST"])
 def api_associates_list():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
-    cursor.execute("SELECT associate_id id, associate_name name FROM associates WHERE deleted=0 ORDER BY associate_name LIMIT ?;", (LIMITS,))
+    cursor.execute("SELECT associate_id id, associate_name name FROM associates WHERE deleted=0 ORDER BY associate_name;", ())
     data = cursor.fetchall()
     connection.close()
 
@@ -148,7 +181,7 @@ def api_associates_list():
 
 
 # http://127.0.0.1:5000/api/associate/details
-@app.route("/api/associate/details", methods=["GET", "POST"])
+@app.route("/api/associate/details", methods=["POST"])
 def api_associate_details():
     data = json.loads(request.data.decode())
     connection = sqlite3.connect(DATABASE)
@@ -215,9 +248,8 @@ WHERE
     return json.dumps(report)
 
 
-
 # http://127.0.0.1:5000/api/configs/list
-@app.route("/api/configs/list", methods=["GET", "POST"])
+@app.route("/api/configs/list", methods=["POST"])
 def api_configs_list():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
@@ -232,7 +264,7 @@ def api_configs_list():
 
 
 # http://127.0.0.1:5000/api/amenities/list
-@app.route("/api/amenities/list", methods=["GET", "POST"])
+@app.route("/api/amenities/list", methods=["POST"])
 def api_amenities_list():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
@@ -270,15 +302,15 @@ def api_amenities_save():
     connection.commit()
     connection.close()
 
-    return "Amentiy saved"
+    return "Amentiy saved: "+data["name"]
 
 
 # http://127.0.0.1:5000/api/amenities/import
 @app.route("/api/amenities/import", methods=["POST"])
 def api_amenities_import():
-# get list of amenties
+# get list of all amenties
 # for each amenity
-# if not exist in destination
+# if does not exist in destination
 # insert
     
     connection = sqlite3.connect(DATABASE)
@@ -299,6 +331,7 @@ def api_amenities_import():
     connection.commit()
     connection.close()
     return json.dumps(data)
+
 
 if __name__ == "__main__":
     # python3 housekeeping.py >> log.txt 2>&1 &
