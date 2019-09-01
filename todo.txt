@@ -1,14 +1,18 @@
 Respond with JS/CSS/HTML content types when using static.
 Route robots, favicon
 Hire an associate
-Clear who.associate once data entered.
+Clear who.associate once data is entered.
 Credits to icons, favicon
 From amenities to data entry page with pre-selection.
 If amenity is repeated, use single instance only in the reports - case sensitive
 COLLATE NOCASE
-/amenities should display amenities/list.
-/missing should display missign/list.
-Date sync necessary for a timezone. Entered/Reflected difference.
-No HTML5 support in Safari.
+Date synchronization necessary for a timezone in JS and SQLite UTC Time
+No HTML5 support (DataList) in Safari.
 Select box stylizing in Safari.
 Add hours worked by an associate - to calculate efficiency.
+Monthly report print.
+Separate data according to date.
+Report in ascending order.
+Search by date
+Remove room number datalist: -
+https://embed.plnkr.co/plunk/gZhSIa
