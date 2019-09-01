@@ -2,6 +2,31 @@
 	<h1>Amenities/Stuffs Forgotten - Report</h1>
 </div>
 
+<!--{{dates}}-->
+<div ng-repeat="(d, date) in dates">
+	<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+		<thead class="w3-yellow">
+			<tr>
+				<th>{{date}}</th>
+				<th>Room #</th>
+				<th>Amenities/Stuffs</th>
+				<th>Area Not Cleaned</th>
+				<th>Remarks</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- print the data of matching dates only -->
+			<tr ng-repeat="missing in missingdatajson track by $index" ng-if="missing.date == date">
+				<td>{{missing.associate|default:'-'}}</td>
+				<td>{{missing.room|default:'-'}}</td>
+				<td>{{missing.missingstuffs|default:'-'}}</td>
+				<td>{{missing.anc|default:'-'}}</td>
+				<td>{{missing.remarks|default:'-'}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!--
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" id="mmt" ng-show="missingdata.length>0">
 	<thead class="w3-yellow">
 		<tr>
@@ -13,7 +38,8 @@
 			<th onclick="sortTable('mmt', 5)">Remarks</th>
 		</tr>
 	</thead>
-		<tr ng-repeat="missing in missingdata">
+	<tbody>
+		<tr ng-repeat="missing in missingdata track by $index">
 			<td>{{missing[1]}}</td>
 			<td>{{missing[2]}}</td>
 			<td>{{missing[3]}}</td>
@@ -21,10 +47,39 @@
 			<td>{{missing[5]}}</td>
 			<td>{{missing[6]}}</td>
 		</tr>
-	<tbody>
 	</tbody>
 </table>
-<!--{{missingdata}}-->
+-->
+<!--
+{{missingdata}}
+-->
+<!--<hr>-->
+<!-- {"id":"5AE29488-0816-4A1B-9519-1D3833CF38C4","date":"2019-08-01","associate":"John Doe","room":"148","missingstuffs":"PENS","and":"","remarks":""} -->
+<!--
+{{missingdatajson}}
+<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" id="mmt1" ng-show="missingdata.length>0">
+	<thead class="w3-yellow">
+		<tr>
+			<th onclick="sortTable('mmt1', 0)">When?</th>
+			<th onclick="sortTable('mmt1', 1)">Associate</th>
+			<th onclick="sortTable('mmt1', 2)">Room #</th>
+			<th onclick="sortTable('mmt1', 3)">Amenities/Stuffs</th>
+			<th onclick="sortTable('mmt1', 4)">Area Not Cleaned</th>
+			<th onclick="sortTable('mmt1', 5)">Remarks</th>
+		</tr>
+	</thead>
+	<tbody ng-repeat="(key, mdjs) in missingdatajson track by $index">
+		<tr ng-repeat="mdj in mdjs">
+			<td>{{mdj.date}}</td>
+			<td>{{mdj.associate}}</td>
+			<td>{{mdj.room}}</td>
+			<td>{{mdj.missingstuffs}}</td>
+			<td>{{mdj.anc}}</td>
+			<td>{{mdj.remarks}}</td>
+		</tr>
+	</tbody>
+</table>
+-->
 
 <div class="w3-container no-print" ng-show="!missingdata.length">
 	<p><strong>Good job Team!</strong> There are no missing records.</p>

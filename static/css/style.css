@@ -4,6 +4,10 @@
     {
         display: none!important;
     }
+	
+	th { white-space: nowrap; }
+	
+	* { font-size: 11px!important; }
 }
 
 *

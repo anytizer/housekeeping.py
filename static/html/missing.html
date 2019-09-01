@@ -4,6 +4,7 @@
 	<h1>Forgotten - Data Entry</h1>
 </div>
 
+<form autocomplete="off">
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
 	<thead class="w3-yellow">
 		<tr>
@@ -28,14 +29,11 @@
 			<td>
 				<input class="w3-input w3-border" type="text" size="4" maxlength="4" max="9999" name="room_number" list="room_numbers_defined" ng-model="missing.room_number" placeholder="Room No.">
 				<datalist id="room_numbers_defined">
-					<option value="-">
-					<option value="Public Area">
 				</datalist>
 			</td>
 			<td>
 				<input class="w3-input w3-border" type="text" name="missingstuffs" maxlength="20" list="missingstuffs_defined" ng-model="missing.missingstuffs" placeholder="Forgotten Stuffs">
 				<datalist id="missingstuffs_defined">
-					<option value="-">
 					<option ng-repeat="amenity in amenities" value="{{amenity[1]}}">{{amenity[1]}}</option>
 				</datalist>
 				<!--{{amenities}}-->
@@ -51,6 +49,7 @@
 		</tr>
 	</tbody>
 </table>
+</form>
 
 <div class="w3-container no-print">
     <p><strong>Notes:</strong> This list MUST be finalized and printed <em>today</em>. You won't be able to edit past entries.

@@ -42,8 +42,8 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider.state({
     name: "associates.hire",
     url: "/hire",
-    templateUrl: "/html/associates",
-    controller: "AssociatesController",
+    templateUrl: "/html/associates-hire",
+    controller: "AssociatesHireController",
   });
 
   $stateProvider.state({
@@ -208,6 +208,15 @@ myApp.service("APIService", ["$http", function($http) {
 	};
 }]);
 
+myApp.filter("default", function() {
+    return function(input, defaultValue="-") {
+        if (angular.isUndefined(input) || input === null || input === '') {
+            return defaultValue;
+        }
+
+        return input;
+    }
+});
 
 myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIService", function($scope, $state, $stateParams, APIService) {
 	$scope.today = new Date();
@@ -226,7 +235,6 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
 	dateControl.max = yyyy + "-" + mm + "-" + dd;
 	// @todo MIN not working
 	//dateControl.min = "2019-08-01"; // yyyy + "-" + mm + "-" + dd;
-	
 	
 	$scope.amenities = [];
 	$scope.amenities_list = function()
@@ -261,6 +269,11 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
 		if(missing.associate=="") return false;
 		//if(missing.room_number=="-") return false;
 		if(missing.missingstuffs=="" && missing.anc=="" && missing.remarks=="") return false;
+		
+		// https://stackoverflow.com/questions/17545708/parse-date-without-timezone-javascript
+		var date = new Date(missing.date)
+		var userTimezoneOffset = date.getTimezoneOffset() * 60000;
+		missing.date = new Date(date.getTime() - userTimezoneOffset);
 
 		APIService.missing_save(missing)
 		.then(function(response){
@@ -319,6 +332,33 @@ myApp.controller("MissingReportsController", ["$scope", "$state", "$stateParams"
 		APIService.missing_reports()
 		.then(function(response){
 			$scope.missingdata = response.data;
+			
+			//console.log(response.data);
+			// ["BE54C327-7D08-4B5A-B241-18FCED60CD6E", "2019-08-08", "John Doe", "225", "PENS", "", ""]
+			// https://embed.plnkr.co/plunk/gZhSIa
+			var missingdatajson = Array();
+			var dates = Array();
+			for(i=0; i<response.data.length; ++i)
+			{
+				record = {
+					"id": response.data[i][0],
+					"date": response.data[i][1],
+					"associate": response.data[i][2],
+					"room": response.data[i][3],
+					"missingstuffs": response.data[i][4],
+					"anc": response.data[i][5],
+					"remarks": response.data[i][6],
+				};
+				if(!dates.includes(record.date))
+				{
+					dates.push(record.date)
+				}
+				missingdatajson.push(record);
+			}
+			
+			//console.log(dates);
+			$scope.dates = dates; // makes a first loop while printing
+			$scope.missingdatajson = missingdatajson;
 	    }, function(error){
 			alert("Error loading missing data...");
 	    });

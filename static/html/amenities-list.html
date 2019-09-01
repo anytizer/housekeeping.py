@@ -6,7 +6,7 @@
 			<th onclick="sortTable('mmt', 0)">S.N.</th>
 			<th onclick="sortTable('mmt', 1)">Amenity Name</th>
 			<th onclick="sortTable('mmt', 2)">Cases</th>
-			<th class="no-print">Report</th>
+			<th class="no-print">View Report</th>
 			<th class="no-print">Remove Amenity</th>
 		</tr>
 	</thead>
@@ -14,8 +14,8 @@
 		<tr ng-repeat="(a, amenity) in amenities">
 			<td>{{a+1}}</td>
 			<td>{{amenity[1]}}</td>
-			<td>{{amenity[2]}} cases</td>
-			<td class="no-print"><a ui-sref="amenities.report({'amenity': amenity[1]})">Report</a></td>
+			<td>{{amenity[2]}} Reports</td>
+			<td class="no-print"><a ui-sref="amenities.report({'amenity': amenity[1]})">View</a></td>
 			<td class="no-print"><a class="w3-btn w3-red" ng-click="remove(amenity)">Wrong Entry</td>
 		</tr>
 	</tbody>
@@ -23,10 +23,10 @@
 <!--{{amenities}}-->
 
 <div class="no-print">
-<div class="w3-container" ng-show="!amenities.length">
-	<p><strong>Notes:</strong> No amenties in the list.</p>
-</div>
-<div class="w3-container" ng-show="amenities.length">
-	<p><strong>Notes:</strong> This table is sortable.</p>
-</div>
+	<div class="w3-container" ng-show="!amenities.length">
+		<p><strong>Notes:</strong> No amenties in the list.</p>
+	</div>
+	<div class="w3-container" ng-show="amenities.length">
+		<p><strong>Notes:</strong> This table is sortable. Click on the column head.</p>
+	</div>
 </div>
