@@ -4,16 +4,19 @@
     {
         display: none!important;
     }
-	
-	th { white-space: nowrap; }
-	
-	* { font-size: 11px!important; }
+
+    th { white-space: nowrap; }
+
+    /* * { font-size: 11px!important; } */
+
+    .newpage {page-break-before: always!important; }
 }
+
 
 *
 {
-	border: none;
-	outline: none;
+    border: none;
+    outline: none;
 }
 
 thead { cursor: pointer; }

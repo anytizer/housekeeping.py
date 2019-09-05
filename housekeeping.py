@@ -17,7 +17,7 @@ LIMITS = 400
 # app = Flask(__name__, static_folder='static', static_url_path='')
 # https://flask-httpauth.readthedocs.io/en/latest/
 
-#app.add_url_rule("/favicon.ico", redirect_to=url_for("static", filename="favicon.ico"))
+# app.add_url_rule("/favicon.ico", redirect_to=url_for("static", filename="favicon.ico"))
 
 
 @app.route("/", methods=["GET"])
@@ -39,14 +39,14 @@ def test():
 def endpoints():
     links = []
     for rule in app.url_map.iter_rules():
-        #print(rule)
+        # print(rule)
         # rule.methods
-        #url = url_for(rule.endpoint, **(rule.defaults or {}))
-        #links.append((url, rule.endpoint))
+        # url = url_for(rule.endpoint, **(rule.defaults or {}))
+        # links.append((url, rule.endpoint))
         links.append({"endpoint":rule.endpoint, "method":rule.methods})
-    #links.sort()
+    # links.sort()
 
-    #return str(links)
+    # return str(links)
     # json.dumps(links)
     r = Response(response=str(links), status=200, mimetype="application/json")
     r.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -57,7 +57,7 @@ def endpoints():
 @app.route("/html/<string:rawpath>", methods=["GET"])
 def html_templates_for_angularjs(rawpath=""):
     # prevent hacks to download other unspefied files
-    #replaces = ["\\", "/", "..", "."]
+    # replaces = ["\\", "/", "..", "."]
     rawpath = rawpath.replace("/", "")
     rawpath = rawpath.replace("\\", "")
     rawpath = rawpath.replace("..", "")
@@ -93,10 +93,48 @@ def api_missing_list():
 def api_missing_reports():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
+
     cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=? ORDER BY `date` DESC, associate ASC, room_number ASC LIMIT ?;", (0, LIMITS,))
-    data = cursor.fetchall()
+    data_raw = cursor.fetchall()
+
+    missingstuffs_counter_sql="""
+select
+	m.missingstuffs stuff,
+	count(m.missingstuffs) total
+from associates a
+inner join missing m on m.associate = a.associate_name
+where m.missingstuffs!=""
+group by
+	m.missingstuffs
+order by total desc
+;
+"""
+    cursor.execute(missingstuffs_counter_sql, ())
+    data_missingstuffs_counter = cursor.fetchall()
+
+    associates_reporting_sql="""
+select
+	a.associate_name associate,
+	sum(case when m.missingstuffs == "" then 0 else 1 end) missingstuffs_total,
+	sum(case when m.anc == "" then 0 else 1 end) anc_total,
+	count(a.associate_name) total
+from associates a
+inner join missing m on m.associate = a.associate_name
+group by
+	a.associate_name
+order by total desc
+;
+"""
+    cursor.execute(associates_reporting_sql, ())
+    associates_reporting = cursor.fetchall()
+
     connection.close()
 
+    data = {
+        "raw": data_raw,
+        "missingstuffs_counter": data_missingstuffs_counter,
+        "associates_reporting": associates_reporting,
+    }
     return json.dumps(data)
 
 
@@ -104,14 +142,14 @@ def api_missing_reports():
 @app.route("/api/missing/reports/individual", methods=["POST"])
 def api_missing_reports_individual():
     data = json.loads(request.data.decode())
-    #print("Data received: ", data)
+    # print("Data received: ", data)
     connection = sqlite3.connect(DATABASE)
 
     # get unique name of the associate
     cursor = connection.cursor()
     cursor.execute("SELECT associate_name NAME FROM associates WHERE associate_id=? LIMIT 1;", (data["id"],))
     associate = cursor.fetchone()
-    #print("Associate found: ", associate)
+    # print("Associate found: ", associate)
     
     cursor.execute("SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND associate=? ORDER BY DATE DESC LIMIT ?;", (associate[0], LIMITS,))
     data = cursor.fetchall()
@@ -125,7 +163,7 @@ def api_missing_reports_individual():
 @app.route("/api/missing/reports/amenity", methods=["POST"])
 def api_missing_reports_amenity():
     data = json.loads(request.data.decode())
-    #print("Data received: ", data)
+    # print("Data received: ", data)
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
     sql = "SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND missingstuffs=? ORDER BY date DESC LIMIT ?;"
@@ -211,7 +249,7 @@ WHERE
 GROUP BY a.associate_name
 ORDER BY a.associate_name ASC;
 """
-    #print(sql, data)
+    # print(sql, data)
     cursor.execute(sql, (0, data["id"],))
     report = cursor.fetchone()
     connection.close()
@@ -237,7 +275,7 @@ INNER JOIN amenities a ON a.amenity_name = m.missingstuffs
 WHERE
 	a.amenity_name=?
 ;"""
-    #print(sql, data)
+    # print(sql, data)
     cursor.execute(sql, (data["amenity"],))
     report = cursor.fetchone()
     connection.close()
@@ -257,7 +295,7 @@ def api_configs_list():
     data = cursor.fetchall()
     connection.close()
 
-    #return json.dumps(data)
+    # return json.dumps(data)
     r = Response(response=json.dumps(data), status=200, mimetype="application/json")
     r.headers["Content-Type"] = "application/json; charset=utf-8"
     return r
@@ -286,7 +324,7 @@ def api_amenities_remove():
     connection.commit()
     connection.close()
 
-    return "Amentiy deleted"
+    return "Amenity deleted"
 
 
 # http://127.0.0.1:5000/api/amenities/save
@@ -302,7 +340,7 @@ def api_amenities_save():
     connection.commit()
     connection.close()
 
-    return "Amentiy saved: "+data["name"]
+    return "Amenity saved: "+data["name"]
 
 
 # http://127.0.0.1:5000/api/amenities/import
@@ -312,7 +350,6 @@ def api_amenities_import():
 # for each amenity
 # if does not exist in destination
 # insert
-    
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
     suggestions_sql="SELECT UPPER(missingstuffs) amenity, COUNT(missingstuffs) total FROM missing GROUP BY UPPER(missingstuffs) ORDER BY amenity;"
