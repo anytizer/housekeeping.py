@@ -98,31 +98,35 @@ def api_missing_reports():
     data_raw = cursor.fetchall()
 
     missingstuffs_counter_sql="""
-select
+SELECT
 	m.missingstuffs stuff,
-	count(m.missingstuffs) total
-from associates a
-inner join missing m on m.associate = a.associate_name
-where m.missingstuffs!=""
-group by
+	COUNT(m.missingstuffs) total
+FROM associates a
+INNER JOIN missing m ON m.associate = a.associate_name
+WHERE
+    a.deleted=0
+    AND m.missingstuffs!=""
+GROUP BY
 	m.missingstuffs
-order by total desc
+ORDER BY total DESC
 ;
 """
     cursor.execute(missingstuffs_counter_sql, ())
     data_missingstuffs_counter = cursor.fetchall()
 
     associates_reporting_sql="""
-select
+SELECT
 	a.associate_name associate,
-	sum(case when m.missingstuffs == "" then 0 else 1 end) missingstuffs_total,
-	sum(case when m.anc == "" then 0 else 1 end) anc_total,
-	count(a.associate_name) total
-from associates a
-inner join missing m on m.associate = a.associate_name
-group by
+	SUM(CASE WHEN m.missingstuffs == "" THEN 0 ELSE 1 END) missingstuffs_total,
+	SUM(CASE WHEN m.anc == "" THEN 0 ELSE 1 END) anc_total,
+	COUNT(a.associate_name) total
+FROM associates a
+INNER JOIN missing m ON m.associate = a.associate_name
+WHERE
+    a.deleted=0
+GROUP BY
 	a.associate_name
-order by total desc
+ORDER BY total DESC
 ;
 """
     cursor.execute(associates_reporting_sql, ())
@@ -245,7 +249,8 @@ SELECT
 FROM missing m
 INNER JOIN associates a ON a.associate_name = m.associate
 WHERE
-    m.deleted=? AND a.associate_id=?
+    m.deleted=?
+    AND a.associate_id=?
 GROUP BY a.associate_name
 ORDER BY a.associate_name ASC;
 """
