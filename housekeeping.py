@@ -56,7 +56,7 @@ def endpoints():
 # http://127.0.0.1:5000/html/configs ==> static/html/configs.html
 @app.route("/html/<string:rawpath>", methods=["GET"])
 def html_templates_for_angularjs(rawpath=""):
-    # prevent hacks to download other unspefied files
+    # prevent hacks to download other unspecified files
     # replaces = ["\\", "/", "..", "."]
     rawpath = rawpath.replace("/", "")
     rawpath = rawpath.replace("\\", "")
@@ -346,7 +346,7 @@ def api_amenities_save():
 # http://127.0.0.1:5000/api/amenities/import
 @app.route("/api/amenities/import", methods=["POST"])
 def api_amenities_import():
-# get list of all amenties
+# get list of all amenities
 # for each amenity
 # if does not exist in destination
 # insert

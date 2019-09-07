@@ -212,6 +212,7 @@ myApp.service("APIService", ["$http", function ($http) {
         };
     }]);
 
+
 myApp.filter("default", function () {
     return function (input, defaultValue = "-") {
         if (angular.isUndefined(input) || input === null || input === '') {
@@ -221,6 +222,7 @@ myApp.filter("default", function () {
         return input;
     }
 });
+
 
 myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIService", function ($scope, $state, $stateParams, APIService) {
         $scope.today = new Date();
@@ -476,9 +478,7 @@ myApp.controller("AmenitiesAddController", ["$scope", "$state", "$stateParams", 
         $scope.amenity = {"name": ""};
         $scope.save = function (amenity)
         {
-            if (amenity.name == "")
-                return false;
-            if (amenity.name == "-")
+            if (amenity.name === "")
                 return false;
 
             APIService.amenities_save(amenity)

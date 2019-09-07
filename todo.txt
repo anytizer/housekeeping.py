@@ -7,7 +7,7 @@ From amenities to data entry page with pre-selection.
 If amenity is repeated, use single instance only in the reports - case sensitive
 COLLATE NOCASE
 Date synchronization necessary for a timezone in JS and SQLite UTC Time
-No HTML5 support (DataList) in Safari.
+No HTML5 DataList support in Safari.
 Select box stylizing in Safari.
 Add hours worked by an associate - to calculate efficiency.
 Monthly report print.

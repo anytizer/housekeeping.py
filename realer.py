@@ -35,7 +35,7 @@ for associate in associates:
     sql="INSERT INTO associates VALUES(?, ?, ?, ?);"
     cursor.execute(sql, data)
 
-amenities = ["Body Soap", "Coffee", "Cups", "Curtains", "Face Cloth (Towel)", "Hand Towel", "Hair Dryer", "Hand Soap", "Lids", "Micro Oven", "Note Book", "Paper Towel", "Pens", "Pillow", "TV Set", "Towel"]
+amenities = ["Body Soap", "Coffee", "Cups", "Curtains", "DND Card", "Face Cloth (Towel)", "Hand Towel", "Hair Dryer", "Hand Soap", "Lids", "Micro Oven", "Note Book", "Paper Towel", "Pens", "Pillow", "TV Set", "Towel"]
 for amenity in amenities:
     id = str(uuid.uuid4()).upper()
     data = [id, amenity, 0]

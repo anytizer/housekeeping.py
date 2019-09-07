@@ -3,3 +3,5 @@
 /backup-*.db
 /realer.live.py
 /__pycache__
+/*.db
+/.idea
