@@ -1,24 +1,33 @@
 # housekeeping.py
+
 List of amenities and stuffs forgotten by your housekeeping department.
 
 
 ## Built Using:
+
  * [Python 3](https://www.python.org/downloads/)
  * [Flask](https://palletsprojects.com/p/flask/)
  * [AngularJS](https://angularjs.org/)
  * [SQLite 3](https://www.sqlite.org/)
  * [W3CSS](https://www.w3schools.com/w3css/)
- * IDEs: Idle, Notepad++, NetBeans, PHPStorm
+ * IDEs: [Idle (Python)](https://www.python.org/downloads/), [Notepad++](https://notepad-plus-plus.org), [NetBeans](https://netbeans.org), [PHPStorm](https://www.jetbrains.com/?from=anytizer), [DB Browser for SQLite](https://sqlitebrowser.org), [PyCharm](https://www.jetbrains.com/pycharm/)
 
 
-## Useful Scripts
- * [realer.py](realer.py) - Installs the database contents.
- * [faker.py](faker.py) - Installs dummy data, optional
- * [importer.py](importer.py) - Imports data from another database
+## Useful Python Scripts
+
+ * [realer.py](realer.py) - Installs the database contents
+ * [faker.py](faker.py) - Optionally populate the dummy data
+ * [importer.py](importer.py) - Imports data from another database - sample
  * [housekeeping.py](housekeeping.py) - Main web server API scripts
 
 
-### Installation
+### Database
+
+ * housekeeping.db - SQLite database file
+
+
+## Installation
+
  * Install `python 3` and `pip 3`.
  * Install Flask: `pip install flask`
  * Checkout this project using Git.
@@ -31,18 +40,38 @@ List of amenities and stuffs forgotten by your housekeeping department.
  * Port 5000 - This is the default port number to access the website
 
 
-### Features
- * List of items missed
- * List of associates
- * List of amenities
- * Import amenities from data entry list
+## Features
+
+ * Data entry of  items forgotten by an associate
  * List of Associates (Workers)
    - Total number of records
+ * Import amenities from data entry list
  * List of amenities that the associates forgot to replace on specified dates and rooms.
    - Number of records
    - Enter new forgotten amenity
- * Data Entry: List of amenities as suggestions
  * Reports
    - Reports for today
    - Reports per amenity
- * All pages are printer friendly * Forgotten data entry
+ 
+All pages are printer friendly.
+
+ 
+## Tested in
+
+This product has been tested to run in:
+
+
+### Operating Systems
+
+ * [Raspberry Pi](https://www.raspberrypi.org)
+ * Mac
+ * [MX Linux](https://mxlinux.org)
+ * [Windows 10](https://www.microsoft.com/en-ca/windows/get-windows-10)
+
+
+### Browsers
+
+ * [Firefox](https://www.mozilla.org/en-CA/firefox/new/)
+ * [Opera](https://www.opera.com/download)
+ * [Chrome](https://www.google.com/chrome/)
+ * [Safari](https://support.apple.com/downloads/safari): ([DATALIST](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) not supported)

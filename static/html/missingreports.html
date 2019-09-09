@@ -1,18 +1,20 @@
-<div class="newpage">
-    <div class="w3-container w3-teal">
-        <h1>Amenities/Stuffs Forgotten - Report</h1>
-    </div>
+<div class="w3-container w3-teal no-print">
+    <h1>Amenities/Stuffs Forgotten - Report</h1>
+</div>
 
+<div class="newpage">
     <h2>Forgotten Amenities Summary</h2>
     <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
         <thead class="w3-yellow">
             <tr>
+                <th>S.N.</th>
                 <th>Stuffs Forgotten</th>
                 <th># Count</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="stuff in missingdata.missingstuffs_counter">
+            <tr ng-repeat="(s, stuff) in missingdata.missingstuffs_counter">
+                <td>{{s+1}}</td>
                 <td>{{stuff[0]}}</td>
                 <td>{{stuff[1]}}</td>
             </tr>
@@ -25,6 +27,7 @@
     <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
         <thead class="w3-yellow">
             <tr>
+                <th>S.N.</th>
                 <th>Amenity</th>
                 <th>Missing Stuffs Cases</th>
                 <th>Area not cleaned</th>
@@ -32,7 +35,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="associate in missingdata.associates_reporting">
+            <tr ng-repeat="(a, associate) in missingdata.associates_reporting">
+                <td>{{a+1}}</td>
                 <td>{{associate[0]}}</td>
                 <td>{{associate[1]}}</td>
                 <td>{{associate[2]}}</td>
@@ -47,7 +51,13 @@
 <div class="newpage">
     <h2>Forgotten Amenities - Daily Report</h2>
     <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-
+        <colgroup>
+            <col style="width: 20%;" />
+            <col style="width: 20%;" />
+            <col style="width: 20%;" />
+            <col style="width: 20%;" />
+            <col style="width: 20%;" />
+        </colgroup>
         <thead class="w3-yellow">
             <tr>
                 <th>Date</th>
@@ -60,13 +70,16 @@
     </table>
     <div ng-repeat="(d, date) in dates">
         <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+            <colgroup>
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+            </colgroup>
             <thead class="w3-yellow">
                 <tr>
                     <th colspan="5">{{date}}</th>
-                    <!--<th>Room #</th>
-                    <th>Amenities/Stuffs</th>
-                    <th>Area Not Cleaned</th>
-                    <th>Remarks</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -82,73 +95,3 @@
         </table>
     </div>
 </div>
-
-
-<!--
-<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" id="mmt" ng-show="missingdata.length>0">
-        <thead class="w3-yellow">
-                <tr>
-                        <th onclick="sortTable('mmt', 0)">When?</th>
-                        <th onclick="sortTable('mmt', 1)">Associate</th>
-                        <th onclick="sortTable('mmt', 2)">Room #</th>
-                        <th onclick="sortTable('mmt', 3)">Amenities/Stuffs</th>
-                        <th onclick="sortTable('mmt', 4)">Area Not Cleaned</th>
-                        <th onclick="sortTable('mmt', 5)">Remarks</th>
-                </tr>
-        </thead>
-        <tbody>
-                <tr ng-repeat="missing in missingdata track by $index">
-                        <td>{{missing[1]}}</td>
-                        <td>{{missing[2]}}</td>
-                        <td>{{missing[3]}}</td>
-                        <td>{{missing[4]}}</td>
-                        <td>{{missing[5]}}</td>
-                        <td>{{missing[6]}}</td>
-                </tr>
-        </tbody>
-</table>
--->
-<!--
-{{missingdata}}
--->
-<!--<hr>-->
-<!-- {"id":"5AE29488-0816-4A1B-9519-1D3833CF38C4","date":"2019-08-01","associate":"John Doe","room":"148","missingstuffs":"PENS","and":"","remarks":""} -->
-<!--
-{{missingdatajson}}
-<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" id="mmt1" ng-show="missingdata.length>0">
-        <thead class="w3-yellow">
-                <tr>
-                        <th onclick="sortTable('mmt1', 0)">When?</th>
-                        <th onclick="sortTable('mmt1', 1)">Associate</th>
-                        <th onclick="sortTable('mmt1', 2)">Room #</th>
-                        <th onclick="sortTable('mmt1', 3)">Amenities/Stuffs</th>
-                        <th onclick="sortTable('mmt1', 4)">Area Not Cleaned</th>
-                        <th onclick="sortTable('mmt1', 5)">Remarks</th>
-                </tr>
-        </thead>
-        <tbody ng-repeat="(key, mdjs) in missingdatajson track by $index">
-                <tr ng-repeat="mdj in mdjs">
-                        <td>{{mdj.date}}</td>
-                        <td>{{mdj.associate}}</td>
-                        <td>{{mdj.room}}</td>
-                        <td>{{mdj.missingstuffs}}</td>
-                        <td>{{mdj.anc}}</td>
-                        <td>{{mdj.remarks}}</td>
-                </tr>
-        </tbody>
-</table>
-
-<div class="w3-container no-print" ng-show="!missingdata.length">
-        <p><strong>Good job Team!</strong> There are no missing records.</p>
-</div>
-
-<div class="w3-container no-print" ng-show="missingdata.length>1">
-        <p><strong>Notes:</strong> This table is sortable. Click on the column heads.</p>
-</div>
-
-<!--
-Unique amenities ko no. of incidene
-/#!/amenities/list only if non zero
-associate no. of amenities through out the month
-associate no. of area not cleaned
--->

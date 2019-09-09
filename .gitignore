@@ -5,3 +5,5 @@
 /__pycache__
 /*.db
 /.idea
+/housekeeping.db
+/housekeeping.py

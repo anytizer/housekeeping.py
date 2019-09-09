@@ -9,7 +9,7 @@
 
     /* * { font-size: 11px!important; } */
 
-    .newpage {page-break-before: always!important; }
+    .newpage {page-break-after: always!important; }
 }
 
 
