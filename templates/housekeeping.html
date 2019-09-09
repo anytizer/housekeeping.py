@@ -21,12 +21,24 @@
   
   	<div class="wrapper">
 		<div class="w3-black no-print menus">
-			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missing">Data Entry</a>
-			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missingreports">Reports</a>
-			<a class="w3-btn " ui-sref-active="w3-teal" ui-sref="associates">Associates</a>
-			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="amenities">Amenities</a>
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missing">
+                <img src="{{url_for('static', filename = 'images/attach.png')}}" alt="attach icon" />
+                Data Entry
+            </a>
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missingreports">
+                <img src="{{url_for('static', filename = 'images/report.png')}}" alt="report icon" />
+                Reports
+            </a>
+			<a class="w3-btn " ui-sref-active="w3-teal" ui-sref="associates">
+                <img src="{{url_for('static', filename = 'images/user.png')}}" alt="users icon" />
+                Associates
+            </a>
+			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="amenities">
+                <img src="{{url_for('static', filename = 'images/cog.png')}}" alt="cog icon" />
+                Amenities
+            </a>
 			<!--<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="configs">Configurations</a>-->
-			<a class="w3-btn w3-right" onclick="window.print();">Print</a>
+			<a class="w3-btn w3-right" onclick="window.print();"><img src="{{url_for('static', filename = 'images/printer.png')}}" alt="printer icon" /> Print</a>
 		</div>
 
 		<div>
