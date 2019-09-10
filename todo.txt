@@ -4,12 +4,12 @@ Config mode turn off/on admin features
 Enable wrong entries fixation for upto 2 days
 Create report of selected month only
 Respond with JS/CSS/HTML content types when using static.
-Route robots, favicon
+Route robots, favicon, images
 Hire/Fire an associate
+Full associate profile
 Clear who.associate once data is entered.
 Credits to icons, the H favicon
 From amenities to data entry page with pre-selection.
-If amenity is repeated, use single instance only in the reports - case sensitive
 COLLATE NOCASE
 No HTML5 DataList support in Safari.
 Include datalist of Room Numbers
@@ -26,3 +26,4 @@ Column fix for all tables
 
 Done
 - Date synchronization necessary for a timezone in JS and SQLite UTC Time
+- Upper cased: If amenity is repeated, use single instance only in the reports - case sensitive

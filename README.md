@@ -2,6 +2,9 @@
 
 List of amenities and stuffs forgotten by your housekeeping department.
 
+Source code of this software is made public, assuming that it would be helpful for the related industry.
+If you use this software, a feedback is expected.
+
 
 ## Built Using:
 
@@ -23,13 +26,13 @@ List of amenities and stuffs forgotten by your housekeeping department.
 
 ### Database
 
- * housekeeping.db - SQLite database file
+ * **housekeeping.db** - SQLite database file
 
 
 ## Installation
 
- * Install `python 3` and `pip 3`.
- * Install Flask: `pip install flask`
+ * Install `python 3` and `pip 3` on a server.
+ * [Install Flask](https://flask.palletsprojects.com/en/1.1.x/installation/): `pip install flask`
  * Checkout this project using Git.
  * `cd housekeeping.py`
  * Edit `realer.py` with your own list of associates and amenities.
@@ -63,8 +66,10 @@ This product has been tested to run in:
 
 ### Operating Systems
 
+Server script of this product has been tested to run in:
+
  * [Raspberry Pi](https://www.raspberrypi.org)
- * Mac
+ * [macOS](https://en.wikipedia.org/wiki/MacOS)
  * [MX Linux](https://mxlinux.org)
  * [Windows 10](https://www.microsoft.com/en-ca/windows/get-windows-10)
 
