@@ -6,4 +6,6 @@
 /*.db
 /.idea
 /housekeeping.db
-/housekeeping.py
+/importer.py
+/tests/vendor
+/vendor

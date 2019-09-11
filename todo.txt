@@ -20,9 +20,6 @@ Report in ascending order.
 Search by date
 https://embed.plnkr.co/plunk/gZhSIa
 
-http://localhost:5000/#!/missingreports
-Column fix for all tables
-
 Done
 - Date synchronization necessary for a timezone in JS and SQLite UTC Time
 - Upper cased: If amenity is repeated, use single instance only in the reports - case sensitive
