@@ -1,31 +1,37 @@
-@media print
-{    
-    .no-print
-    {
-        display: none!important;
+@media print {
+    .no-print {
+        display: none !important;
     }
 
-    th { white-space: nowrap; }
+    th {
+        white-space: nowrap;
+    }
 
     /* * { font-size: 11px!important; } */
-
-    .newpage {page-break-after: always!important; }
+    .newpage {
+        page-break-after: always !important;
+    }
 }
 
 
-*
-{
+* {
     border: none;
     outline: none;
 }
 
-thead { cursor: pointer; }
-td { vertical-align: top; }
+thead {
+    cursor: pointer;
+}
 
-strong { color: red; }
+td {
+    vertical-align: top;
+}
 
-.select
-{
+strong {
+    color: red;
+}
+
+.select {
     min-width: 200px;
     background-color: #EEE;
 }

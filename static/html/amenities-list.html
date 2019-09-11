@@ -1,32 +1,33 @@
-<p class="w3-padding no-print"><strong>Notes:</strong> Entries will appear as suggestion in <a ui-sref="missing({})">data entry page</a>. We already have the following amenities sorted alphabetically.</p>
+<p class="w3-padding no-print"><strong>Notes:</strong> Entries will appear as suggestion in <a ui-sref="missing({})">data
+    entry page</a>. We already have the following amenities sorted alphabetically.</p>
 
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" id="mmt">
-	<thead class="w3-yellow">
-		<tr>
-			<th onclick="sortTable('mmt', 0)">S.N.</th>
-			<th onclick="sortTable('mmt', 1)">Amenity Name</th>
-			<th onclick="sortTable('mmt', 2)">Cases</th>
-			<th class="no-print">View Report</th>
-			<th class="no-print">Remove Amenity</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="(a, amenity) in amenities">
-			<td>{{a+1}}</td>
-			<td>{{amenity[1]}}</td>
-			<td>{{amenity[2]}} Reports</td>
-			<td class="no-print"><a ui-sref="amenities.report({'amenity': amenity[1]})">View</a></td>
-			<td class="no-print"><a class="w3-btn w3-red" ng-click="remove(amenity)">Wrong Entry</td>
-		</tr>
-	</tbody>
+    <thead class="w3-yellow">
+    <tr>
+        <th onclick="sortTable('mmt', 0)">S.N.</th>
+        <th onclick="sortTable('mmt', 1)">Amenity Name</th>
+        <th onclick="sortTable('mmt', 2)">Cases</th>
+        <th class="no-print">View Report</th>
+        <th class="no-print">Remove Amenity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(a, amenity) in amenities">
+        <td>{{a+1}}</td>
+        <td>{{amenity[1]}}</td>
+        <td>{{amenity[2]}} Reports</td>
+        <td class="no-print"><a ui-sref="amenities.report({'amenity': amenity[1]})">View</a></td>
+        <td class="no-print"><a class="w3-btn w3-red" ng-click="remove(amenity)">Wrong Entry</td>
+    </tr>
+    </tbody>
 </table>
 <!--{{amenities}}-->
 
 <div class="no-print">
-	<div class="w3-container" ng-show="!amenities.length">
-		<p><strong>Notes:</strong> No amenties in the list.</p>
-	</div>
-	<div class="w3-container" ng-show="amenities.length">
-		<p><strong>Notes:</strong> This table is sortable. Click on the column head.</p>
-	</div>
+    <div class="w3-container" ng-show="!amenities.length">
+        <p><strong>Notes:</strong> No amenties in the list.</p>
+    </div>
+    <div class="w3-container" ng-show="amenities.length">
+        <p><strong>Notes:</strong> This table is sortable. Click on the column head.</p>
+    </div>
 </div>

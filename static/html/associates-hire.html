@@ -1,7 +1,23 @@
 <div class="w3-container w3-teal">
-	<h2>Hire an associate</h2>
+    <h2>Hire an associate</h2>
 </div>
 
-<div class="w3-container no-print">
-	<p><strong>Notes:</strong> Please contact your admin to add/hire an associate.</p>
-</div>
+<form autocomplete="off" class="no-print" method="post" name="associates-form">
+    <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+        <thead class="w3-yellow">
+        <tr>
+            <th>Associate Name</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input class="w3-input w3-border" id="associate-name" name="associate" ng-model="associate.name" placeholder="Associate Name"
+                       type="text"/></td>
+            <td>
+                <button class="w3-btn w3-blue" ng-click="save(associate)">Hire Associate</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>

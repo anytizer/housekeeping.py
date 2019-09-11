@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <title>Housekeeping - Amenities Forgotten: {{timestamp}}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <title>Housekeeping - Amenities Forgotten: {{timestamp}}</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/w3.css')}}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}" />
-  
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-  
-  <script type="text/javascript" src="{{url_for('static', filename = 'js/angularjs/angular.min.js')}} "></script>
-  <script type="text/javascript" src="{{url_for('static', filename = 'js/angularjs/angular-sanitize.min.js')}}"></script>
-  <script type="text/javascript" src="{{url_for('static', filename = 'js/ui-router/angular-ui-router.min.js')}} "></script>
-  <script type="text/javascript" src="{{url_for('static', filename = 'js/ui-router/stateEvents.min.js')}}"></script>
-  <script type="text/javascript" src="{{url_for('static', filename = 'js/sortable.js')}}"></script>
-  <script type="text/javascript" src="{{url_for('static', filename = 'js/app.js')}}"></script>
+    <link href="{{ url_for('static', filename = 'css/w3.css')}}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename = 'css/style.css')}}" rel="stylesheet"/>
+
+    <link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon"/>
+
+    <script src="{{url_for('static', filename = 'js/angularjs/angular.min.js')}} " type="text/javascript"></script>
+    <script src="{{url_for('static', filename = 'js/angularjs/angular-sanitize.min.js')}}"
+            type="text/javascript"></script>
+    <script src="{{url_for('static', filename = 'js/ui-router/angular-ui-router.min.js')}} "
+            type="text/javascript"></script>
+    <script src="{{url_for('static', filename = 'js/ui-router/stateEvents.min.js')}}" type="text/javascript"></script>
+    <script src="{{url_for('static', filename = 'js/sortable.js')}}" type="text/javascript"></script>
+    <script src="{{url_for('static', filename = 'js/app.js')}}" type="text/javascript"></script>
 
 </head>
 <body ng-app="myApp">
-  
-  	<div class="wrapper">
-		<div class="w3-black no-print menus">
-			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missing">
-                <img src="{{url_for('static', filename = 'images/attach.png')}}" alt="attach icon" />
-                Data Entry
-            </a>
-			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="missingreports">
-                <img src="{{url_for('static', filename = 'images/report.png')}}" alt="report icon" />
-                Reports
-            </a>
-			<a class="w3-btn " ui-sref-active="w3-teal" ui-sref="associates">
-                <img src="{{url_for('static', filename = 'images/user.png')}}" alt="users icon" />
-                Associates
-            </a>
-			<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="amenities">
-                <img src="{{url_for('static', filename = 'images/cog.png')}}" alt="cog icon" />
-                Amenities
-            </a>
-			<!--<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="configs">Configurations</a>-->
-			<a class="w3-btn w3-right" onclick="window.print();"><img src="{{url_for('static', filename = 'images/printer.png')}}" alt="printer icon" /> Print</a>
-		</div>
 
-		<div>
-			<ui-view></ui-view>
-		</div>
-	</div>
+<div class="wrapper">
+    <div class="w3-black no-print menus">
+        <a class="w3-btn" ui-sref="missing" ui-sref-active="w3-teal">
+            <img alt="attach icon" src="{{url_for('static', filename = 'images/attach.png')}}"/>
+            Data Entry
+        </a>
+        <a class="w3-btn" ui-sref="missingreports" ui-sref-active="w3-teal">
+            <img alt="report icon" src="{{url_for('static', filename = 'images/report.png')}}"/>
+            Reports
+        </a>
+        <a class="w3-btn " ui-sref="associates" ui-sref-active="w3-teal">
+            <img alt="users icon" src="{{url_for('static', filename = 'images/user.png')}}"/>
+            Associates
+        </a>
+        <a class="w3-btn" ui-sref="amenities" ui-sref-active="w3-teal">
+            <img alt="cog icon" src="{{url_for('static', filename = 'images/cog.png')}}"/>
+            Amenities
+        </a>
+        <!--<a class="w3-btn" ui-sref-active="w3-teal" ui-sref="configs">Configurations</a>-->
+        <a class="w3-btn w3-right" onclick="window.print();"><img
+                alt="printer icon" src="{{url_for('static', filename = 'images/printer.png')}}"/> Print</a>
+    </div>
+
+    <div>
+        <ui-view></ui-view>
+    </div>
+</div>
 
 </body>
 </html>

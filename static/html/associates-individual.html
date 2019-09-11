@@ -1,30 +1,30 @@
 <div class="w3-container w3-teal">
-	<h1>{{associate[1]}} forgot #{{missingdata.length}} stuffs...</h1>
+    <h1>{{associate[1]}} forgot #{{missingdata.length}} stuffs...</h1>
 </div>
 
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" id="mmt">
-	<thead class="w3-yellow">
-		<tr>
-			<th onclick="sortTable('mmt', 0)">When?</th>
-			<th onclick="sortTable('mmt', 1)">Room #</th>
-			<th onclick="sortTable('mmt', 2)">Amenities/Stuffs</th>
-			<th onclick="sortTable('mmt', 3)">Area Not Cleaned</th>
-			<th onclick="sortTable('mmt', 4)">Remarks</th>
-		</tr>
-	</thead>
-		<!-- associate name not to be printed in this list -->
-		<tr ng-repeat="missing in missingdata">
-			<td>{{missing[1]}}</td>
-			<td>{{missing[3]}}</td>
-			<td>{{missing[4]}}</td>
-			<td>{{missing[5]}}</td>
-			<td>{{missing[6]}}</td>
-		</tr>
-	<tbody>
-	</tbody>
+    <thead class="w3-yellow">
+    <tr>
+        <th onclick="sortTable('mmt', 0)">When?</th>
+        <th onclick="sortTable('mmt', 1)">Room #</th>
+        <th onclick="sortTable('mmt', 2)">Amenities/Stuffs</th>
+        <th onclick="sortTable('mmt', 3)">Area Not Cleaned</th>
+        <th onclick="sortTable('mmt', 4)">Remarks</th>
+    </tr>
+    </thead>
+    <!-- associate name not to be printed in this list -->
+    <tr ng-repeat="missing in missingdata">
+        <td>{{missing[1]}}</td>
+        <td>{{missing[3]}}</td>
+        <td>{{missing[4]}}</td>
+        <td>{{missing[5]}}</td>
+        <td>{{missing[6]}}</td>
+    </tr>
+    <tbody>
+    </tbody>
 </table>
 <!--{{missingdata}}-->
 
 <div class="w3-container" ng-show="!missingdata.length">
-	<p><strong>Good!</strong> <em>{{associate[1]}}</em> does not have any forgotten records.</p>
+    <p><strong>Good!</strong> <em>{{associate[1]}}</em> does not have any forgotten records.</p>
 </div>

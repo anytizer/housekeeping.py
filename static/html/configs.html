@@ -1,30 +1,30 @@
 <div class="w3-container w3-teal">
-	<h1>Configurations</h1>
+    <h1>Configurations</h1>
 </div>
 
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-	<thead class="w3-yellow">
-		<tr>
-			<th>S.N.</th>
-			<th>Configuration Name</th>
-			<th>Configuration Value</th>
-			<th>Copy Variable (AngularJS)</th>
-			<th>Copy Variable (Flask)</th>
-			<th>Notes</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="(c, config) in configs">
-			<td>{{c+1}}</td>
-			<td>{{config[0]}}</td>
-			<td>{{config[1]}}</td>
-			<!-- @todo buggy way for value printing curly braces -->
-			<!-- not to be rendered by Flask -->
-			<td>{{'{{'}}config[{{c}}]}}</td>
-			<td>{{'{{'}}{{'config["'+config[0]+'"]'}}}}</td>
-			<td>{{config[2]}}</td>
-		</tr>
-	</tbody>
+    <thead class="w3-yellow">
+    <tr>
+        <th>S.N.</th>
+        <th>Configuration Name</th>
+        <th>Configuration Value</th>
+        <th>Copy Variable (AngularJS)</th>
+        <th>Copy Variable (Flask)</th>
+        <th>Notes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="(c, config) in configs">
+        <td>{{c+1}}</td>
+        <td>{{config[0]}}</td>
+        <td>{{config[1]}}</td>
+        <!-- @todo buggy way for value printing curly braces -->
+        <!-- not to be rendered by Flask -->
+        <td>{{'{{'}}config[{{c}}]}}</td>
+        <td>{{'{{'}}{{'config["'+config[0]+'"]'}}}}</td>
+        <td>{{config[2]}}</td>
+    </tr>
+    </tbody>
 </table>
 
 <p class="w3-padding"><strong>Notes:</strong> This list does not contain private entries.</p>

@@ -1,20 +1,23 @@
 <div class="w3-container">
-	<h2>Add</h2>
+    <h2>Add</h2>
 </div>
 
-<form method="post" class="no-print" name="amenities-form" autocomplete="off">
-<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-	<thead class="w3-yellow">
-		<tr>
-			<th>Amenity Name</th>
-			<th>&nbsp;</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><input class="w3-input w3-border" type="text" id="amenity-name" name="amenity" ng-model="amenity.name" placeholder="Amenity Name" /></td>
-			<td><button class="w3-btn w3-blue" ng-click="save(amenity)">Add Amenity</button></td>
-		</tr>
-	</tbody>
-</table>
+<form autocomplete="off" class="no-print" method="post" name="amenities-form">
+    <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+        <thead class="w3-yellow">
+        <tr>
+            <th>Amenity Name</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input class="w3-input w3-border" id="amenity-name" name="amenity" ng-model="amenity.name" placeholder="Amenity Name"
+                       type="text"/></td>
+            <td>
+                <button class="w3-btn w3-blue" ng-click="save(amenity)">Add Amenity</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form>

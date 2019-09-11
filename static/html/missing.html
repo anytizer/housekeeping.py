@@ -1,99 +1,106 @@
-<form class="no-print" method="post" autocomplete="off">
+<form autocomplete="off" class="no-print" method="post">
 
-<div class="w3-container w3-teal no-print">
-	<h1>Forgotten - Data Entry</h1>
-</div>
+    <div class="w3-container w3-teal no-print">
+        <h1>Forgotten - Data Entry</h1>
+    </div>
 
-<form autocomplete="off">
-<table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-	<thead class="w3-yellow">
-		<tr>
-			<th>When?</th>
-			<th>Associate</th>
-			<th>Room #</th>
-			<th>Amenities/Stuffs</th>
-			<th>Area Not Cleaned</th>
-			<th>Remarks</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><input class="w3-input w3-border" type="date" format="yyyy-mm-dd" name="date" ng-model="missing.date" placeholder="YYYY-MM-DD" /></td>
-			<td>
-				<select class="w3-input w3-border" name="associate" ng-model="missing.associate" placeholder="">
-					<option ng-repeat="associate in associates">{{associate[1]}}</option>
-				</select>
-				<!--{{associates}}-->
-			</td>
-			<td>
-				<input class="w3-input w3-border" type="text" size="4" maxlength="4" max="9999" name="room_number" list="room_numbers_defined" ng-model="missing.room_number" placeholder="Room No.">
-				<datalist id="room_numbers_defined">
-				</datalist>
-			</td>
-			<td>
-				<input class="w3-input w3-border" type="text" name="missingstuffs" maxlength="20" list="missingstuffs_defined" ng-model="missing.missingstuffs" placeholder="Forgotten Stuffs">
-				<datalist id="missingstuffs_defined">
-					<option ng-repeat="amenity in amenities" value="{{amenity[1]}}">{{amenity[1]}}</option>
-				</datalist>
-				<!--{{amenities}}-->
-			</td>
-			<td><input class="w3-input w3-border" type="text" name="anc" maxlength="20" ng-model="missing.anc" placeholder="Notes"></td>
-			<td><input class="w3-input w3-border" type="text" name="remarks" maxlength="20" ng-model="missing.remarks" placeholder="Remarks"></td>
-			<td>
-				<button class="w3-btn w3-blue" ng-click="save(missing)">
-					<span ng-show="missing.associate"><span style="color:yellow;">{{missing.associate}}</span> - Forgot</span>
-					<span ng-hide="missing.associate">Confirm Forgotten</span>
-				</button>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</form>
+    <form autocomplete="off">
+        <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
+            <thead class="w3-yellow">
+            <tr>
+                <th>When?</th>
+                <th>Associate</th>
+                <th>Room #</th>
+                <th>Amenities/Stuffs</th>
+                <th>Area Not Cleaned</th>
+                <th>Remarks</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input class="w3-input w3-border" format="yyyy-mm-dd" name="date" ng-model="missing.date"
+                           placeholder="YYYY-MM-DD" type="date"/></td>
+                <td>
+                    <select class="w3-input w3-border" name="associate" ng-model="missing.associate" placeholder="">
+                        <option ng-repeat="associate in associates">{{associate[1]}}</option>
+                    </select>
+                    <!--{{associates}}-->
+                </td>
+                <td>
+                    <input class="w3-input w3-border" list="room_numbers_defined" max="9999" maxlength="4" name="room_number" ng-model="missing.room_number"
+                           placeholder="Room No." size="4" type="text">
+                    <datalist id="room_numbers_defined">
+                    </datalist>
+                </td>
+                <td>
+                    <input class="w3-input w3-border" list="missingstuffs_defined" maxlength="20" name="missingstuffs"
+                           ng-model="missing.missingstuffs" placeholder="Forgotten Stuffs" type="text">
+                    <datalist id="missingstuffs_defined">
+                        <option ng-repeat="amenity in amenities" value="{{amenity[1]}}">{{amenity[1]}}</option>
+                    </datalist>
+                    <!--{{amenities}}-->
+                </td>
+                <td><input class="w3-input w3-border" maxlength="20" name="anc" ng-model="missing.anc" placeholder="Notes"
+                           type="text"></td>
+                <td><input class="w3-input w3-border" maxlength="20" name="remarks" ng-model="missing.remarks"
+                           placeholder="Remarks" type="text"></td>
+                <td>
+                    <button class="w3-btn w3-blue" ng-click="save(missing)">
+                        <span ng-show="missing.associate"><span style="color:yellow;">{{missing.associate}}</span> - Forgot</span>
+                        <span ng-hide="missing.associate">Confirm Forgotten</span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 
-<div class="w3-container no-print">
-    <p><strong>Notes:</strong> This list MUST be finalized and printed <em>today</em>. You won't be able to edit past entries.
-	<span ng-show="missing.associate">What did <strong>{{missing.associate}}</strong> forget?</span></p>
-</div>
+    <div class="w3-container no-print">
+        <p><strong>Notes:</strong> This list MUST be finalized and printed <em>today</em>. You won't be able to edit
+            past entries.
+            <span ng-show="missing.associate">What did <strong>{{missing.associate}}</strong> forget?</span></p>
+    </div>
 </form>
 <!--{{missing}}-->
 
 <div class="w3-container w3-teal">
-	<h2>
-		Entries for - {{today|date}}<!--:'yyyy-MM-dd'-->
-		<span style="float: right">{{today|date:'HH:mm'}}</span>
-	</h2>
+    <h2>
+        Entries for - {{today|date}}<!--:'yyyy-MM-dd'-->
+        <span style="float: right">{{today|date:'HH:mm'}}</span>
+    </h2>
 </div>
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-	<thead class="w3-yellow">
-		<tr>
-			<th>When?</th>
-			<th>Associate</th>
-			<th>Room #</th>
-			<th>Amenities/Stuffs</th>
-			<th>Area Not Cleaned</th>
-			<th>Remarks</th>
-			<th class="no-print">Action</th>
-		</tr>
-	</thead>
-		<tr ng-repeat="missing in missingdata">
-			<td>{{missing[1]}}</td>
-			<td>
-				<!-- @todo Wrong ID-->
-				<!--<a ui-sref="associate.named({id: missing[2]})">{{missing[2]}}</a>-->
-				{{missing[2]}}
-			</td>
-			<td>{{missing[3]|limitTo:20}}</td>
-			<td>{{missing[4]|limitTo:20}}</td>
-			<td>{{missing[5]|limitTo:20}}</td>
-			<td>{{missing[6]|limitTo:20}}</td>
-			<td class="no-print"><span class="w3-btn w3-red" ng-click="remove(missing[0])">Wrong Entry</span></td>
-		</tr>
-	<tbody>
-	</tbody>
+    <thead class="w3-yellow">
+    <tr>
+        <th>When?</th>
+        <th>Associate</th>
+        <th>Room #</th>
+        <th>Amenities/Stuffs</th>
+        <th>Area Not Cleaned</th>
+        <th>Remarks</th>
+        <th class="no-print">Action</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="missing in missingdata">
+        <td>{{missing[1]}}</td>
+        <td>
+            <!-- @todo Wrong ID-->
+            <!--<a ui-sref="associate.named({id: missing[2]})">{{missing[2]}}</a>-->
+            {{missing[2]}}
+        </td>
+        <td>{{missing[3]|limitTo:20}}</td>
+        <td>{{missing[4]|limitTo:20}}</td>
+        <td>{{missing[5]|limitTo:20}}</td>
+        <td>{{missing[6]|limitTo:20}}</td>
+        <td class="no-print"><span class="w3-btn w3-red" ng-click="remove(missing[0])">Wrong Entry</span></td>
+    </tr>
+    <tbody>
+    </tbody>
 </table>
 
 <div class="w3-container no-print" ng-show="!missingdata.length">
-	<p><strong>Good job Team!</strong> There are no missing records for today. View <a ui-sref="missingreports({})">reports for other days</a>.</p>
+    <p><strong>Good job Team!</strong> There are no missing records for today. View <a ui-sref="missingreports({})">reports
+        for other days</a>.</p>
 </div>
 <!--{{missingdata}}-->

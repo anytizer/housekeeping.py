@@ -1,8 +1,7 @@
-SQLite mode: off for threads; reuse connection object
+Replace js: alert()
 Rename `missing` to forgotten
 Config mode turn off/on admin features
 Enable wrong entries fixation for upto 2 days
-Create report of selected month only
 Respond with JS/CSS/HTML content types when using static.
 Route robots, favicon, images
 Hire/Fire an associate
@@ -27,3 +26,5 @@ Column fix for all tables
 Done
 - Date synchronization necessary for a timezone in JS and SQLite UTC Time
 - Upper cased: If amenity is repeated, use single instance only in the reports - case sensitive
+- SQLite mode: off for threads; reuse connection object
+- Create report of selected month only
