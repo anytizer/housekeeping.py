@@ -1,10 +1,9 @@
 <div class="w3-container w3-teal no-print">
     <h1>Amenities/Stuffs Forgotten - Report</h1>
 </div>
-<div class="w3-container no-print">
-    <span class="w3-btn w3-margin" ng-repeat="dates in missingdata.dates" ng-class="{'w3-blue':dates[0]!=missingdata.when, 'w3-red':dates[0]==missingdata.when}" ng-click="choose_yyyymm(dates[0])">{{dates[0]}}: {{dates[1]}}</span>
+<div class="w3-container w3-sand w3-bottombar no-print">
+    <span class="w3-btn w3-margin" ng-repeat="dates in missingdata.dates" ng-class="{'w3-blue':dates[0]!=missingdata.when, 'w3-red':dates[0]==missingdata.when}" ng-click="choose_yyyymm(dates[0])">{{dates[0]}}: <span style="color:yellow;">{{dates[1]}}</span></span>
 </div>
-
 
 <div class="newpage">
     <h2>Forgotten Amenities Summary - {{when}}</h2>
