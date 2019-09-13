@@ -343,7 +343,13 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
 
 
 myApp.controller("MissingReportsController", ["$scope", "$state", "$stateParams", "APIService", function ($scope, $state, $stateParams, APIService) {
-    $scope.when = "2019-08"; // current year, current month
+    var today = new Date();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (mm < 10) {
+        mm = "0" + mm;
+    }
+    $scope.when = yyyy + "-" + mm; // 2019-08
     $scope.choose_yyyymm = function(when)
     {
         $scope.when = when;
