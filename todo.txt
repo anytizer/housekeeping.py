@@ -1,10 +1,8 @@
-Replace js: alert()
 Rename `missing` to forgotten
 Config mode turn off/on admin features
 Enable wrong entries fixation for upto 2 days
 Respond with JS/CSS/HTML content types when using static.
 Route robots, favicon, images
-Hire/Fire an associate
 Full associate profile
 Clear who.associate once data is entered.
 Credits to icons, the H favicon
@@ -14,13 +12,16 @@ No HTML5 DataList support in Safari.
 Include datalist of Room Numbers
 Select box stylizing in Safari.
 Add hours worked by an associate - to calculate efficiency.
-Monthly report print.
-Separate data according to date.
 Report in ascending order.
 Search by date
 https://embed.plnkr.co/plunk/gZhSIa
 
 Done
+- Monthly report print.
+- Hire/Fire an associate
+- Separate data according to date.
+- Select current month when in report.
+- Replace js: alert()
 - Date synchronization necessary for a timezone in JS and SQLite UTC Time
 - Upper cased: If amenity is repeated, use single instance only in the reports - case sensitive
 - SQLite mode: off for threads; reuse connection object
