@@ -1,3 +1,9 @@
+/**
+ * Received on-rejected errors: the api access failed.
+ * @todo Replace with modal dialog
+ */
+var errorify = function(message){alert(message)};
+
 var myApp = angular.module("myApp", ["ui.router"]);
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
@@ -262,7 +268,7 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
             .then(function (response) {
                 $scope.amenities = response.data;
             }, function (error) {
-                alert("Error loading amenities data...");
+                errorify("Error loading amenities data...");
             });
     };
     $scope.amenities_list();
@@ -301,7 +307,7 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
                 $scope.missingdefaults();
                 $scope.list();
             }, function (error) {
-                alert("Error saving data...");
+                errorify("Error saving data...");
             });
     };
 
@@ -312,7 +318,7 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
                     $scope.missingdefaults();
                     $scope.list();
                 }, function (error) {
-                    alert("Error removing data.." + error.data);
+                    errorify("Error removing data.." + error.data);
                 });
         }
     };
@@ -323,7 +329,7 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
             .then(function (response) {
                 $scope.missingdata = response.data;
             }, function (error) {
-                alert("Error loading missing data...");
+                errorify("Error loading missing data...");
             });
     };
     $scope.list();
@@ -334,7 +340,7 @@ myApp.controller("MissingController", ["$scope", "$state", "$stateParams", "APIS
             .then(function (response) {
                 $scope.associates = response.data;
             }, function (error) {
-                alert("Error loading associates data...");
+                errorify("Error loading associates data...");
             });
     };
     $scope.associates_list();
@@ -391,7 +397,7 @@ myApp.controller("MissingReportsController", ["$scope", "$state", "$stateParams"
                 $scope.dates = dates; // makes a first loop while printing
                 $scope.missingdatajson = missingdatajson;
             }, function (error) {
-                alert("Error loading missing data...");
+                errorify("Error loading missing data...");
             });
     };
     $scope.list();
@@ -415,7 +421,7 @@ myApp.controller("AssociatesListController", ["$scope", "$state", "$stateParams"
                 }, promises);
 
             }, function (error) {
-                alert("Error loading associates data...");
+                errorify("Error loading associates data...");
             });
     };
     $scope.associates_list();
@@ -426,7 +432,7 @@ myApp.controller("AssociatesListController", ["$scope", "$state", "$stateParams"
                 .then(function (response) {
                     $scope.associates_list();
                 }, function (error) {
-                    alert("Error firing an associate...");
+                    errorify("Error firing an associate...");
                 });
         }
     };
@@ -440,7 +446,7 @@ myApp.controller("AssociatesHireController", ["$scope", "$state", "$stateParams"
                 //$scope.associate = response.data;
                 $state.go("associates.list");
             }, function (error) {
-                alert("Error hiring associate...");
+                errorify("Error hiring associate...");
             });
     };
 }]);
@@ -453,7 +459,7 @@ myApp.controller("AssociateReportingController", ["$scope", "$state", "$statePar
             .then(function (response) {
                 $scope.missingdata = response.data;
             }, function (error) {
-                alert("Error loading missing data...");
+                errorify("Error loading missing data...");
             });
     };
     $scope.list();
@@ -464,7 +470,7 @@ myApp.controller("AssociateReportingController", ["$scope", "$state", "$statePar
             .then(function (response) {
                 $scope.associate = response.data;
             }, function (error) {
-                alert("Error loading associate data...");
+                errorify("Error loading associate data...");
             });
     };
     $scope.associate_details();
@@ -487,7 +493,7 @@ myApp.controller("AmenitiesListController", ["$scope", "$state", "$stateParams",
                 }, promises);
 
             }, function (error) {
-                alert("Error loading amenities data...");
+                errorify("Error loading amenities data...");
             });
     };
     $scope.amenities_list();
@@ -498,7 +504,7 @@ myApp.controller("AmenitiesListController", ["$scope", "$state", "$stateParams",
                 .then(function (response) {
                     $scope.amenities_list();
                 }, function (error) {
-                    alert("Error removing amenity...");
+                    errorify("Error removing amenity...");
                 });
         }
     };
@@ -516,7 +522,7 @@ myApp.controller("AmenitiesAddController", ["$scope", "$state", "$stateParams", 
                 $scope.amenity = {"name": ""};
                 $state.go("amenities.list");
             }, function (error) {
-                alert("Error saving amenity data...");
+                errorify("Error saving amenity data...");
             });
     };
 }]);
@@ -528,7 +534,7 @@ myApp.controller("AmenitiesImportController", ["$scope", "$state", "$stateParams
             .then(function (response) {
                 $state.go("amenities.list");
             }, function (error) {
-                alert("Error importing amenities from missing stuffs...");
+                errorify("Error importing amenities from missing stuffs...");
             });
     } else {
         $state.go("amenities.list");
@@ -544,7 +550,7 @@ myApp.controller("AmenitiesReportController", ["$scope", "$state", "$stateParams
             .then(function (response) {
                 $scope.missingdata = response.data;
             }, function (error) {
-                alert("Error loading missing data...");
+                errorify("Error loading missing data...");
             });
     };
     $scope.list();
@@ -558,7 +564,7 @@ myApp.controller("ConfigsController", ["$scope", "$state", "$stateParams", "APIS
             .then(function (response) {
                 $scope.configs = response.data;
             }, function (error) {
-                alert("Error loading configs data...");
+                errorify("Error loading configs data...");
             });
     };
     $scope.configs_list();
