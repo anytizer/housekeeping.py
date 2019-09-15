@@ -5,7 +5,7 @@ import json
 import sys
 import sqlite3
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from os import path
 import hashlib
 
@@ -111,8 +111,12 @@ def api_missing_reports():
     cursor.execute(associates_reporting_sql, (for_month,))
     associates_reporting = cursor.fetchall()
 
+    days_to_subtract = 30 * 6  # later than 6 months
+    d = datetime.today() - timedelta(days=days_to_subtract)
+    past_date = str(d)
+
     dates_sql = sqlfile("missing-months.sql")
-    cursor.execute(dates_sql, ())
+    cursor.execute(dates_sql, (past_date,))
     dates = cursor.fetchall()
 
     data = {
@@ -134,9 +138,7 @@ def api_missing_reports_individual():
     cursor.execute("SELECT associate_name NAME FROM associates WHERE associate_id=? LIMIT 1;", (data["id"],))
     associate = cursor.fetchone()
 
-    cursor.execute(
-        "SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND associate=? ORDER BY DATE DESC LIMIT ?;",
-        (associate[0], LIMITS,))
+    cursor.execute(sqlfile("missing-reports-individual.sql"), (associate[0], LIMITS,))
     data = cursor.fetchall()
 
     return json.dumps(data)
@@ -164,8 +166,7 @@ def api_missing_save():
     id = str(uuid.uuid4()).upper()
 
     cursor = connection.cursor()
-    fields = (id, data["associate"], data["room_number"], data["missingstuffs"].upper(), data["anc"], data["remarks"],
-              data["date"], 0)
+    fields = (id, data["associate"], data["room_number"], data["missingstuffs"].upper(), data["anc"], data["remarks"], data["date"], 0)
     cursor.execute("INSERT INTO missing VALUES (?, DATETIME('NOW', 'LOCALTIME'), ?, ?, ?, ?, ?, ?, ?)", fields)
     connection.commit()
 
