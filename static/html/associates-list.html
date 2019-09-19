@@ -7,23 +7,23 @@
 -->
 
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable">
-    <thead class="w3-yellow">
-    <tr>
-        <th>S.N.</th>
-        <th>Associate (Name)</th>
-        <th>Records Count</th>
-        <th class="no-print">Data Entry</th>
-        <th class="no-print">Action</th>
-    </tr>
+    <thead class="w3-pale-yellow">
+        <tr>
+            <th>S.N.</th>
+            <th>Associate (Name)</th>
+            <th>Records Count</th>
+            <th class="no-print">Data Entry</th>
+            <th class="no-print">Action</th>
+        </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="(a, associate) in associates">
-        <td>{{a+1}}</td>
-        <td>{{associate[1]}}</td>
-        <td><a ui-sref="associates.individual({id: associate[0]})">{{associate[2]}} records</a></td>
-        <td class="no-print"><a ui-sref="missing.who({who: associate[1]})">Forgot Something</a></td>
-        <td class="no-print"><a class="w3-btn w3-red" ng-click="fire({id:associate[0]})">Fire</a></td>
-    </tr>
+        <tr ng-repeat="(a, associate) in associates">
+            <td>{{a+1}}</td>
+            <td>{{associate[1]}}</td>
+            <td><a ui-sref="associates.individual({id: associate[0]})">{{associate[2]}} records</a></td>
+            <td class="no-print"><a ui-sref="missing.who({who: associate[1]})">Forgot Something</a></td>
+            <td class="no-print"><a class="w3-btn w3-red" ng-click="fire({id:associate[0]})">Fire</a></td>
+        </tr>
     </tbody>
 </table>
 
