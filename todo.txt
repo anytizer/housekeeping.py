@@ -1,3 +1,4 @@
+Increase the text limit to 40 characters in ANC.
 Rename `missing` to forgotten
 Config mode turn off/on admin features
 Enable wrong entries fixation for upto 2 days
