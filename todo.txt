@@ -1,4 +1,4 @@
-Increase the text limit to 40 characters in ANC.
+Implement login (user, password)
 Rename `missing` to forgotten
 Config mode turn off/on admin features
 Enable wrong entries fixation for upto 2 days
@@ -13,11 +13,11 @@ No HTML5 DataList support in Safari.
 Include datalist of Room Numbers
 Select box stylizing in Safari.
 Add hours worked by an associate - to calculate efficiency.
-Report in ascending order.
-Search by date
 https://embed.plnkr.co/plunk/gZhSIa
 
 Done
+- Increase the text limit to 50 characters in ANC.
+- Report in ascending order, list by month
 - Monthly report print.
 - Hire/Fire an associate
 - Separate data according to date.
