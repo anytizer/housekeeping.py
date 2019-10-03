@@ -2,18 +2,22 @@ Implement login (user, password)
 Rename `missing` to forgotten
 Config mode turn off/on admin features
 Enable wrong entries fixation for upto 2 days
-Respond with JS/CSS/HTML content types when using static.
+Respond with appropriate JS/CSS/HTML content types when using static.
 Route robots, favicon, images
 Full associate profile
 Clear who.associate once data is entered.
-Credits to icons, the H favicon
-From amenities to data entry page with pre-selection.
+Credits to the "H" favicon (https://www.favicon-generator.org)
 COLLATE NOCASE
-No HTML5 DataList support in Safari.
-Include datalist of Room Numbers
-Select box stylizing in Safari.
-Add hours worked by an associate - to calculate efficiency.
+Safari: HTML5 DataList support, Select box stylizing.
+Add hours worked by an associate - to calculate efficiency in a period.
+
+Group By data using angularJS Filter
 https://embed.plnkr.co/plunk/gZhSIa
+
+Include graphs in reports pages.
+
+Not doing:
+- Include datalist of available Room Numbers
 
 Done
 - Increase the text limit to 50 characters in ANC.
