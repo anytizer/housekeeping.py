@@ -131,25 +131,21 @@ def api_missing_reports():
 
     # Graphs modules
 
-    ## Assocaite Report = Name
+    ## Associate Report Graph
     df = pd.DataFrame(data["associates_reporting"])
     df.columns = ["Name", "Missing Stuffs Cases", "Area Not Cleaned", "Total Cases"]
     df = df.drop(["Total Cases"], axis=1)
     df.set_index("Name", inplace = True)
-    # df.index = df.Name
-    # df.to_html("_hskp.html", index=False)
     graph = df.plot(kind="bar")
-    # graph.tight_layout()
-    # graph = df.plot(x="Name", y="Area Not Cleaned", kind="bar")
+    graph.set_ylabel("Cases Recorded")
     figure = graph.get_figure()
     figure.savefig("static/images/missing-associates.png")
 
-    ## Missing Report = missingstuffs_counter
+    ## Missing Reports Graph
     dfMissing = pd.DataFrame(data["missingstuffs_counter"])
     dfMissing.columns = ["Amenity", "Quantity"]
-    #dfMissing.to_html("_Missing.html", index=True)
     missingGraph = dfMissing.plot(x="Amenity", y="Quantity", kind="bar")
-    # missingGraph.tight_layout()
+    missingGraph.set_ylabel("Quantity")
     missingFigure = missingGraph.get_figure()
     missingFigure.savefig("static/images/missing-amenities.png")
 
