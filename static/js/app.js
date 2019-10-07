@@ -396,6 +396,11 @@ myApp.controller("MissingReportsController", ["$scope", "$state", "$stateParams"
                 //console.log(dates);
                 $scope.dates = dates; // makes a first loop while printing
                 $scope.missingdatajson = missingdatajson;
+
+                // just refresh the images with new random value, so that they are not cached
+                document.getElementById("image-missing-associates").src="/static/images/missing-associates.png?rand="+Math.random();
+                document.getElementById("image-missing-amenities").src="/static/images/missing-amenities.png?rand="+Math.random();
+
             }, function (error) {
                 errorify("Error loading missing data...");
             });

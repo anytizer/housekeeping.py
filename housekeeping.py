@@ -9,6 +9,8 @@ from datetime import datetime, timedelta
 from os import path
 import hashlib
 
+import pandas as pd
+
 app = Flask(__name__)
 
 ROOT_PATH = app.root_path
@@ -126,8 +128,32 @@ def api_missing_reports():
         "missingstuffs_counter": data_missingstuffs_counter,
         "associates_reporting": associates_reporting,
     }
-    return json.dumps(data)
 
+    # Graphs modules
+
+    ## Assocaite Report = Name
+    df = pd.DataFrame(data["associates_reporting"])
+    df.columns = ["Name", "Missing Stuffs Cases", "Area Not Cleaned", "Total Cases"]
+    df = df.drop(["Total Cases"], axis=1)
+    df.set_index("Name", inplace = True)
+    # df.index = df.Name
+    # df.to_html("_hskp.html", index=False)
+    graph = df.plot(kind="bar")
+    # graph.tight_layout()
+    # graph = df.plot(x="Name", y="Area Not Cleaned", kind="bar")
+    figure = graph.get_figure()
+    figure.savefig("static/images/missing-associates.png")
+
+    ## Missing Report = missingstuffs_counter
+    dfMissing = pd.DataFrame(data["missingstuffs_counter"])
+    dfMissing.columns = ["Amenity", "Quantity"]
+    #dfMissing.to_html("_Missing.html", index=True)
+    missingGraph = dfMissing.plot(x="Amenity", y="Quantity", kind="bar")
+    # missingGraph.tight_layout()
+    missingFigure = missingGraph.get_figure()
+    missingFigure.savefig("static/images/missing-amenities.png")
+
+    return json.dumps(data)
 
 # http://127.0.0.1:5000/api/missing/reports/individual
 @app.route("/api/missing/reports/individual", methods=["POST"])
