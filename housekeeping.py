@@ -24,7 +24,7 @@ connection = sqlite3.connect(DATABASE, check_same_thread=False)
 
 # For long SQLs, read them from file
 def sqlfile(file=""):
-    f = open(ROOT_PATH + "/sqls/" + file, "r")
+    f = open("{0}/sqls/{1}".format(ROOT_PATH, file), "r")
     contents = f.read()
     return contents
 
@@ -130,6 +130,7 @@ def api_missing_reports():
     }
 
     # Graphs modules
+    # Pre-writes the image files on the server and links back to HTML
 
     ## Associate Report Graph
     if data["associates_reporting"]:
@@ -138,6 +139,7 @@ def api_missing_reports():
         df = df.drop(["Total Cases"], axis=1)
         df.set_index("Name", inplace = True)
         graph = df.plot(kind="bar")
+        graph.set_xlabel("Associates")
         graph.set_ylabel("Cases Recorded")
         figure = graph.get_figure()
         figure.savefig("static/images/missing-associates.png")
@@ -145,9 +147,10 @@ def api_missing_reports():
     ## Missing Reports Graph
     if data["missingstuffs_counter"]:
         dfMissing = pd.DataFrame(data["missingstuffs_counter"])
-        dfMissing.columns = ["Amenity", "Quantity"]
-        missingGraph = dfMissing.plot(x="Amenity", y="Quantity", kind="bar")
-        missingGraph.set_ylabel("Quantity")
+        dfMissing.columns = ["Amenity", "Cases Recorded"]
+        missingGraph = dfMissing.plot(x="Amenity", y="Cases Recorded", kind="bar")
+        missingGraph.set_xlabel("Amenities")
+        missingGraph.set_ylabel("Cases Recorded")
         missingFigure = missingGraph.get_figure()
         missingFigure.savefig("static/images/missing-amenities.png")
 
