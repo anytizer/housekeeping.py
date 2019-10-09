@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS "configs";
+
 CREATE TABLE "configs"
 (
     "config_name"  TEXT NOT NULL,

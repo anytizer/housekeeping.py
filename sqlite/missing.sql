@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS "missing";
+
 CREATE TABLE "missing"
 (
     "id"            TEXT    NOT NULL,

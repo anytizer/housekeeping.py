@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS amenities;
+
 CREATE TABLE "amenities"
 (
     "amenity_id"   TEXT    NOT NULL,

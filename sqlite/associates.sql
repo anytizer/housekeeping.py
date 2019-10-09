@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS "associates";
+
 CREATE TABLE "associates"
 (
     "associate_id"       TEXT NOT NULL,

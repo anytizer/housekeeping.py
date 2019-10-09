@@ -132,22 +132,24 @@ def api_missing_reports():
     # Graphs modules
 
     ## Associate Report Graph
-    df = pd.DataFrame(data["associates_reporting"])
-    df.columns = ["Name", "Missing Stuffs Cases", "Area Not Cleaned", "Total Cases"]
-    df = df.drop(["Total Cases"], axis=1)
-    df.set_index("Name", inplace = True)
-    graph = df.plot(kind="bar")
-    graph.set_ylabel("Cases Recorded")
-    figure = graph.get_figure()
-    figure.savefig("static/images/missing-associates.png")
+    if data["associates_reporting"]:
+        df = pd.DataFrame(data["associates_reporting"])
+        df.columns = ["Name", "Missing Stuffs Cases", "Area Not Cleaned", "Total Cases"]
+        df = df.drop(["Total Cases"], axis=1)
+        df.set_index("Name", inplace = True)
+        graph = df.plot(kind="bar")
+        graph.set_ylabel("Cases Recorded")
+        figure = graph.get_figure()
+        figure.savefig("static/images/missing-associates.png")
 
     ## Missing Reports Graph
-    dfMissing = pd.DataFrame(data["missingstuffs_counter"])
-    dfMissing.columns = ["Amenity", "Quantity"]
-    missingGraph = dfMissing.plot(x="Amenity", y="Quantity", kind="bar")
-    missingGraph.set_ylabel("Quantity")
-    missingFigure = missingGraph.get_figure()
-    missingFigure.savefig("static/images/missing-amenities.png")
+    if data["missingstuffs_counter"]:
+        dfMissing = pd.DataFrame(data["missingstuffs_counter"])
+        dfMissing.columns = ["Amenity", "Quantity"]
+        missingGraph = dfMissing.plot(x="Amenity", y="Quantity", kind="bar")
+        missingGraph.set_ylabel("Quantity")
+        missingFigure = missingGraph.get_figure()
+        missingFigure.savefig("static/images/missing-amenities.png")
 
     return json.dumps(data)
 
