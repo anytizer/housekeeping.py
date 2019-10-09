@@ -40,6 +40,8 @@ If you use this software, a feedback is expected.
 * Edit `realer.py` with your own list of associates and amenities.
 * Run `python3 realer.py`
 * Optionally, run sample data: `python3 faker.py`
+* touch static/images/missing-amenities.png
+* touch static/images/missing-associates.png
 * Run the script from terminal: `python3 housekeeping.py`
 * Browse the website: [http://0.0.0.0:5000/](http://0.0.0.0:5000/) with your own IP Addresses over the LAN
 * Port 5000 - This is the default port number to access the website
@@ -60,7 +62,7 @@ If you use this software, a feedback is expected.
 
 All pages are printer friendly.
 
- 
+
 ## Tested in
 
 This product has been tested to run in:
@@ -82,3 +84,10 @@ Server script of this product has been tested to run in:
 * [Opera](https://www.opera.com/download)
 * [Chrome](https://www.google.com/chrome/)
 * [Safari](https://support.apple.com/downloads/safari): ([DATALIST](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) not supported)
+
+
+# Routes Extraction
+
+    set FLASK_AP=housekeeping.py
+    flask routes > routes.txt
+

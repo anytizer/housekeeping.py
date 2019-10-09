@@ -7,6 +7,8 @@ api_amenities_save              POST     /api/amenities/save
 api_associate_details           POST     /api/associate/details
 api_associates_amenities        POST     /api/associates/amenities
 api_associates_entries          POST     /api/associates/entries
+api_associates_fire             POST     /api/associates/fire
+api_associates_hire             POST     /api/associates/hire
 api_associates_list             POST     /api/associates/list
 api_configs_list                POST     /api/configs/list
 api_missing_list                POST     /api/missing/list
@@ -19,3 +21,4 @@ endpoints                       GET      /endpoints
 html_templates_for_angularjs    GET      /html/<string:rawpath>
 index                           GET      /
 static                          GET      /static/<path:filename>
+test                            GET      /test
