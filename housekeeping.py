@@ -349,7 +349,14 @@ def api_amenities_import():
     # if does not exist in destination
     # insert
     cursor = connection.cursor()
-    suggestions_sql = "SELECT UPPER(missingstuffs) amenity, COUNT(missingstuffs) total FROM missing GROUP BY UPPER(missingstuffs) ORDER BY amenity;"
+
+    patch_sql = "UPDATE missing SET missingstuffs=UPPER(missingstuffs);"
+    cursor.execute(patch_sql, ())
+
+    patch_amenities_sql = "UPDATE amenities SET amenity_name=UPPER(amenity_name);"
+    cursor.execute(patch_amenities_sql, ())
+
+    suggestions_sql = "SELECT missingstuffs amenity, COUNT(missingstuffs) total FROM missing GROUP BY missingstuffs ORDER BY amenity;"
     cursor.execute(suggestions_sql, ())
     data = cursor.fetchall()
 
@@ -358,8 +365,8 @@ def api_amenities_import():
         cursor.execute(check_sql, (amenity[0],))
         existing = cursor.fetchone()
         if not existing:
-            id = str(uuid.uuid4()).upper()
-            fields = (id, amenity[0].upper(), 0,)
+            guid = str(uuid.uuid4()).upper()
+            fields = (guid, amenity[0], 0,)
             cursor.execute("INSERT INTO amenities VALUES (?, ?, ?)", fields)
 
     connection.commit()
