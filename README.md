@@ -88,6 +88,6 @@ Server script of this product has been tested to run in:
 
 # Routes Extraction
 
-    set FLASK_AP=housekeeping.py
+    set FLASK_APP=housekeeping.py
     flask routes > routes.txt
 
