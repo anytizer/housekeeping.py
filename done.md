@@ -10,3 +10,5 @@ Done
 - Upper cased: If amenity is repeated, use single instance only in the reports - case sensitive
 - SQLite mode: off for threads; reuse connection object
 - Create report of selected month only
+- Clear who.associate once data is entered.
+- Monthly Report in ascending order

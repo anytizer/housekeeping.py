@@ -10,5 +10,5 @@ FROM missing
 WHERE
     deleted = ?
     AND SUBSTR(date, 1, 7)=?
-ORDER BY `date` DESC, associate ASC, room_number ASC
+ORDER BY `date` ASC, associate ASC, room_number ASC
 LIMIT ?;
