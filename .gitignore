@@ -10,3 +10,4 @@
 /tests/vendor
 /vendor
 /fixer.sql
+/.ipynb_checkpoints
