@@ -6,7 +6,7 @@ Source code of this software is made public, assuming that it would be helpful f
 If you use this software, a feedback is expected.
 
 
-## Built Using:
+## Built Using
 
 * [Python 3](https://www.python.org/downloads/)
 * [Flask](https://palletsprojects.com/p/flask/)
@@ -29,7 +29,6 @@ If you use this software, a feedback is expected.
 
 * **housekeeping.db** - SQLite database file
 
-
 ## Installation
 
 * Install `python 3` and `pip 3` on a server.
@@ -46,7 +45,6 @@ If you use this software, a feedback is expected.
 * Browse the website: [http://0.0.0.0:5000/](http://0.0.0.0:5000/) with your own IP Addresses over the LAN
 * Port 5000 - This is the default port number to access the website
 
-
 ## Features
 
 * Data entry of  items forgotten by an associate
@@ -62,11 +60,9 @@ If you use this software, a feedback is expected.
 
 All pages are printer friendly.
 
-
 ## Tested in
 
 This product has been tested to run in:
-
 
 ### Operating Systems
 
@@ -77,19 +73,16 @@ Server script of this product has been tested to run in:
 * [MX Linux](https://mxlinux.org)
 * [Windows 10](https://www.microsoft.com/en-ca/windows/get-windows-10)
 
-
 ### Browsers
 
 * [Firefox](https://www.mozilla.org/en-CA/firefox/new/)
 * [Opera](https://www.opera.com/download)
 * [Chrome](https://www.google.com/chrome/)
-* [Safari](https://support.apple.com/downloads/safari): ([DATALIST](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) not supported)
-
+* [Safari](https://support.apple.com/downloads/safari): ([DATALIST](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) not supported, [Can I use?](https://caniuse.com/#feat=datalist))
 
 # Routes Extraction
 
-See routes.bat
+See [routes.bat](routes.bat).
 
     set FLASK_APP=housekeeping.py
     flask routes > routes.txt
-
