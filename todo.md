@@ -15,9 +15,9 @@ Multi user graph generation
 Include graphs in reports pages.
 Missing stuffs zero, ANC zero: Do not plot in graph.
 Fix xlabel, ylabel in the graph
+Add requirements.txt 
 
 Not doing:
 - Include datalist of available Room Numbers
 - Enable wrong entries fixation for upto 2 days
 - Respond with appropriate JS/CSS/HTML content types when using static.
-- Include datalist of Room Numbers
