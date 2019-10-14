@@ -5,7 +5,6 @@ List of amenities and stuffs forgotten by your housekeeping department.
 Source code of this software is made public, assuming that it would be helpful for the related industry.
 If you use this software, a feedback is expected.
 
-
 ## Built Using
 
 * [Python 3](https://www.python.org/downloads/)
@@ -13,8 +12,7 @@ If you use this software, a feedback is expected.
 * [AngularJS](https://angularjs.org/)
 * [SQLite 3](https://www.sqlite.org/)
 * [W3CSS](https://www.w3schools.com/w3css/)
-* IDEs: [Idle (Python)](https://www.python.org/downloads/), [Notepad++](https://notepad-plus-plus.org), [NetBeans](https://netbeans.org), [PHPStorm](https://www.jetbrains.com/?from=anytizer), [DB Browser for SQLite](https://sqlitebrowser.org), [PyCharm](https://www.jetbrains.com/pycharm/)
-
+* IDEs: [Idle (Python)](https://www.python.org/downloads/), [Notepad++](https://notepad-plus-plus.org), [NetBeans](https://netbeans.org), [PHPStorm](https://www.jetbrains.com/?from=anytizer), [DB Browser for SQLite](https://sqlitebrowser.org), [PyCharm](https://www.jetbrains.com/pycharm/), [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Useful Python Scripts
 
@@ -23,7 +21,6 @@ If you use this software, a feedback is expected.
 * [faker.py](faker.py) - Optionally populate the dummy data
 * [importer.py](importer.py) - Imports data from another database - sample
 * [housekeeping.py](housekeeping.py) - Main web server API scripts
-
 
 ### Database
 
@@ -49,14 +46,14 @@ If you use this software, a feedback is expected.
 
 * Data entry of  items forgotten by an associate
 * List of Associates (Workers)
-  - Total number of records
+  * *Total number of records
 * Import amenities from data entry list
 * List of amenities that the associates forgot to replace on specified dates and rooms.
-  - Number of records
-  - Enter new forgotten amenity
+  * Number of records
+  * Enter new forgotten amenity
 * Reports
-  - Reports for today
-  - Reports per amenity
+  * Reports for today
+  * Reports per amenity
 
 All pages are printer friendly.
 
@@ -80,7 +77,7 @@ Server script of this product has been tested to run in:
 * [Chrome](https://www.google.com/chrome/)
 * [Safari](https://support.apple.com/downloads/safari): ([DATALIST](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) not supported, [Can I use?](https://caniuse.com/#feat=datalist))
 
-# Routes Extraction
+## Routes Extraction
 
 See [routes.bat](routes.bat).
 

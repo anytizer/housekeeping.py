@@ -139,15 +139,7 @@ def api_missing_reports():
         df.columns = ["Name", "Missing Stuffs Cases", "Area Not Cleaned", "Total Cases"]
         df = df.drop(["Total Cases"], axis=1)
         df.set_index("Name", inplace = True)
-
-#       # Remove if MSC and ANC both zero
-#       #df = df[(df!=0).any()]
-#       df = df.replace(0, np.nan)
-#       df = df.dropna(how="all", axis=1)
-#       df = df.replace(np.nan, 0)
-#       print(df)
-      
-        graph = df.plot(kind="bar", grid=False, title="Associates Cases", rot=45, figsize=(16, 9), fontsize=18)
+        graph = df.plot(kind="bar", grid=False, title="Associates Cases", rot=45)
         graph.set_xlabel("Associates")
         graph.set_ylabel("Cases Recorded")
         figure = graph.get_figure()
@@ -157,7 +149,7 @@ def api_missing_reports():
     if data["missingstuffs_counter"]:
         dfMissing = pd.DataFrame(data["missingstuffs_counter"])
         dfMissing.columns = ["Amenity", "Cases Recorded"]
-        missingGraph = dfMissing.plot(x="Amenity", y="Cases Recorded", kind="bar", rot=90, figsize=(16, 9), fontsize=18)
+        missingGraph = dfMissing.plot(x="Amenity", y="Cases Recorded", kind="bar")
         missingGraph.set_xlabel("Amenities")
         missingGraph.set_ylabel("Cases Recorded")
         missingFigure = missingGraph.get_figure()
