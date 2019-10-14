@@ -1,6 +1,7 @@
 from flask import Flask, url_for, render_template, request
 from flask import Response
 from flask import g
+
 import json
 import sys
 import sqlite3
@@ -12,12 +13,12 @@ import hashlib
 import numpy as np
 import pandas as pd
 
-app = Flask(__name__)
+import config
 
+app = Flask(__name__)
 ROOT_PATH = app.root_path
 
-DATABASE = ROOT_PATH + "/housekeeping.db"
-LIMITS = 400
+DATABASE = ROOT_PATH + config.DATABASE
 
 # @todo Use context: https://flask.palletsprojects.com/en/1.0.x/appcontext/
 connection = sqlite3.connect(DATABASE, check_same_thread=False)
@@ -83,7 +84,7 @@ def html_templates_for_angularjs(rawpath=""):
 @app.route("/api/missing/list", methods=["POST"])
 def api_missing_list():
     cursor = connection.cursor()
-    cursor.execute(sqlfile("missing-list.sql"), (LIMITS,))
+    cursor.execute(sqlfile("missing-list.sql"), (config.LIMITS,))
     data = cursor.fetchall()
 
     return json.dumps(data)
@@ -102,7 +103,7 @@ def api_missing_reports():
     if data["when"]!="":
         for_month = data["when"]
 
-    cursor.execute(sqlfile("raw.sql"), (0, for_month, LIMITS,))
+    cursor.execute(sqlfile("raw.sql"), (0, for_month, config.LIMITS,))
     data_raw = cursor.fetchall()
 
     missingstuffs_counter_sql = sqlfile("missingstuffs-counter.sql")
@@ -166,7 +167,7 @@ def api_missing_reports_individual():
     cursor.execute("SELECT associate_name NAME FROM associates WHERE associate_id=? LIMIT 1;", (data["id"],))
     associate = cursor.fetchone()
 
-    cursor.execute(sqlfile("missing-reports-individual.sql"), (associate[0], LIMITS,))
+    cursor.execute(sqlfile("missing-reports-individual.sql"), (associate[0], config.LIMITS,))
     data = cursor.fetchall()
 
     return json.dumps(data)
@@ -179,7 +180,7 @@ def api_missing_reports_amenity():
     data = json.loads(request.data.decode())
     cursor = connection.cursor()
     sql = "SELECT id, SUBSTR(`date`, 0, 11) `date`, associate, room_number, missingstuffs, anc, remarks FROM missing WHERE deleted=0 AND missingstuffs=? ORDER BY date DESC LIMIT ?;"
-    cursor.execute(sql, (data["amenity"], LIMITS,))
+    cursor.execute(sql, (data["amenity"], config.LIMITS,))
     data = cursor.fetchall()
 
     return json.dumps(data)

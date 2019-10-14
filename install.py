@@ -1,15 +1,15 @@
 import sqlite3
 
-DATABASE = "housekeeping.db"
+import config
 
-connection = sqlite3.connect(DATABASE)
+connection = sqlite3.connect(config.DATABASE)
 cursor = connection.cursor()
 
 files = [
-	"sqlite/amenities.sql",
-	"sqlite/associates.sql",
-	"sqlite/configs.sql",
-	"sqlite/missing.sql",
+    "sqlite/amenities.sql",
+    "sqlite/associates.sql",
+    "sqlite/configs.sql",
+    "sqlite/missing.sql",
 ]
 
 for sqlfile in files:

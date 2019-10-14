@@ -5,11 +5,11 @@ import uuid
 from os import path
 import random
 
+import config
+
 # Generate random database
 
-DATABASE = "housekeeping.db"
-
-connection = sqlite3.connect(DATABASE)
+connection = sqlite3.connect(config.DATABASE)
 cursor = connection.cursor()
 
 for i in range(1, 2000):

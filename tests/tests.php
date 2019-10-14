@@ -12,9 +12,6 @@ $relay->headers([
     "X-Protection-Token" => ""
 ]);
 
-/**
- * Different endpoints
- */
 #$json = $relay->fetch("http://localhost:5000/api/missing/list");
 #$json = $relay->fetch("http://localhost:5000/api/amenities/list");
 $json = $relay->fetch("http://localhost:5000/api/associates/list");

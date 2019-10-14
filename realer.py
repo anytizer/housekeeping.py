@@ -8,17 +8,17 @@ import hashlib
 import shutil
 from datetime import datetime
 
+import config
+
 # Real database entries
 # copy the database file into different name
 # enter the data in order
 
-DATABASE = "housekeeping.db"
-
 # Backup the older database
 today = datetime.today()
-shutil.copy(DATABASE, "backup-{0}-{1}.db".format(today.strftime("%Y%m%d%H%M%S"), random.randint(1000, 9999)))
+shutil.copy(config.DATABASE, "backup-{0}-{1}.db".format(today.strftime("%Y%m%d%H%M%S"), random.randint(1000, 9999)))
 
-connection = sqlite3.connect(DATABASE)
+connection = sqlite3.connect(config.DATABASE)
 
 # Remove entries
 connection.execute("DELETE FROM missing;")
@@ -35,7 +35,15 @@ for associate in associates:
     sql="INSERT INTO associates VALUES(?, ?, ?, ?);"
     cursor.execute(sql, data)
 
-amenities = ["Body Soap", "Coffee", "Cups", "Curtains", "DND Card", "Face Cloth (Towel)", "Hand Towel", "Hair Dryer", "Hand Soap", "Lids", "Micro Oven", "Note Book", "Paper Towel", "Pens", "Pillow", "TV Set", "Towel"]
+amenities = [
+    "Bath Mat",
+    "Clinex", "Coffee", "Condiments",
+    "DND Card",
+    "Face Clothes (Towel)", "Garbage Bag", "Hair Dryer", "Hand Towel", "Ice Bag",
+    "Laundry Bag", "Laundry List", "Lids",
+    "Memo Pad (Note Book)", "Micro Oven", "Paper Towel", "Pens", "Pillow",
+    "Shampoo", "Soap", "TV Set", "Tea", "Towel", "Water Cups"
+]
 for amenity in amenities:
     id = str(uuid.uuid4()).upper()
     data = [id, amenity, 0]
