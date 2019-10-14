@@ -72,7 +72,7 @@ This product has been tested to run in:
 
 Server script of this product has been tested to run in:
 
-* [Raspberry Pi](https://www.raspberrypi.org)
+* [Raspbian](https://www.raspberrypi.org)
 * [macOS](https://en.wikipedia.org/wiki/MacOS)
 * [MX Linux](https://mxlinux.org)
 * [Windows 10](https://www.microsoft.com/en-ca/windows/get-windows-10)
@@ -87,6 +87,8 @@ Server script of this product has been tested to run in:
 
 
 # Routes Extraction
+
+See routes.bat
 
     set FLASK_APP=housekeeping.py
     flask routes > routes.txt
