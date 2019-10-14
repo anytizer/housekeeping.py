@@ -1,0 +1,1 @@
+These scripts are used to install the database.
