@@ -18,15 +18,15 @@ import config
 app = Flask(__name__)
 ROOT_PATH = app.root_path
 
-DATABASE = ROOT_PATH + config.DATABASE
 
 # @todo Use context: https://flask.palletsprojects.com/en/1.0.x/appcontext/
-connection = sqlite3.connect(DATABASE, check_same_thread=False)
+connection = sqlite3.connect(ROOT_PATH + "/" + config.DATABASE, check_same_thread=False)
 
 
-# For long SQLs, read them from file
+# For long/multiline SQLs, read them from file
 def sqlfile(file=""):
-    f = open("{0}/sqls/{1}".format(ROOT_PATH, file), "r")
+    physical_file = "{0}/sqls/{1}".format(ROOT_PATH, file)
+    f = open(physical_file, "r")
     contents = f.read()
     return contents
 
@@ -312,8 +312,7 @@ def api_configs_list():
 @app.route("/api/amenities/list", methods=["POST"])
 def api_amenities_list():
     cursor = connection.cursor()
-    cursor.execute(
-        "SELECT amenity_id id, amenity_name name FROM amenities WHERE deleted=0 ORDER BY amenity_name COLLATE NOCASE;")
+    cursor.execute("SELECT amenity_id id, amenity_name name FROM amenities WHERE deleted=0 ORDER BY amenity_name COLLATE NOCASE;")
     data = cursor.fetchall()
 
     return json.dumps(data)
