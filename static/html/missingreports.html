@@ -1,5 +1,5 @@
 <div class="w3-container w3-teal no-print">
-    <h1>Amenities/Stuffs Forgotten - Report</h1>
+    <h1>Quality Assurance and Corrections Report</h1>
 </div>
 <div class="w3-container w3-sand w3-bottombar no-print">
     <span class="w3-btn w3-margin" ng-repeat="dates in missingdata.dates" ng-class="{'w3-blue':dates[0]!=missingdata.when, 'w3-red':dates[0]==missingdata.when}" ng-click="choose_yyyymm(dates[0])">{{dates[0]}}: <span style="color:yellow;">{{dates[1]}}</span></span>
@@ -22,7 +22,7 @@
         <thead class="w3-pale-yellow">
             <tr>
                 <th>S.N.</th>
-                <th>Stuffs Forgotten</th>
+                <th>Items Forgotten</th>
                 <th>Corrections Count</th>
             </tr>
         </thead>
@@ -43,7 +43,7 @@
         <tr>
             <th>S.N.</th>
             <th>Associate</th>
-            <th>Missing Stuffs Cases</th>
+            <th>Missing Items Cases</th>
             <th>Area Not Cleaned</th>
             <th>Total Cases</th>
         </tr>
@@ -58,8 +58,8 @@
         </tr>
         </tbody>
     </table>
-    <p><strong>Note:</strong> If the total case is not equal to the sum of missing stuffs and area not cleaned, it
-        indicates that the associate has record(s) of missing stuffs and area not cleaned on the same day(s).</p>
+    <p><strong>Note:</strong> If the total case is not equal to the sum of missing items and area not cleaned, it
+        indicates that the associate has record(s) of missing items and area not cleaned on the same day(s).</p>
 </div>
 
 <!--{{dates}}-->
@@ -77,7 +77,7 @@
         <tr>
             <th>Date</th>
             <th>Room #</th>
-            <th>Amenities/Stuffs</th>
+            <th>Amenities/Items</th>
             <th>Area Not Cleaned</th>
             <th>Remarks</th>
         </tr>
