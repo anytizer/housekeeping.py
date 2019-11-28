@@ -1,9 +1,10 @@
 # housekeeping.py
 
-List of amenities and stuffs forgotten by your housekeeping department.
+List of Amenities and Stuffs forgotten by your housekeeping department.
 
 Source code of this software is made public, assuming that it would be helpful for the related industry.
 If you use this software, a feedback is expected.
+
 
 ## Built Using
 
@@ -14,6 +15,7 @@ If you use this software, a feedback is expected.
 * [W3CSS](https://www.w3schools.com/w3css/)
 * IDEs: [Idle (Python)](https://www.python.org/downloads/), [Notepad++](https://notepad-plus-plus.org), [NetBeans](https://netbeans.org), [PHPStorm](https://www.jetbrains.com/?from=anytizer), [DB Browser for SQLite](https://sqlitebrowser.org), [PyCharm](https://www.jetbrains.com/pycharm/), [Visual Studio Code](https://code.visualstudio.com/)
 
+
 ## Useful Python Scripts
 
 * [install.py](install.py)
@@ -22,9 +24,11 @@ If you use this software, a feedback is expected.
 * [importer.py](importer.py) - Imports data from another database - sample
 * [housekeeping.py](housekeeping.py) - Main web server API scripts
 
+
 ### Database
 
 * **housekeeping.db** - SQLite database file
+
 
 ## Installation
 
@@ -42,17 +46,20 @@ If you use this software, a feedback is expected.
 * Browse the website: [http://0.0.0.0:5000/](http://0.0.0.0:5000/) with your own IP Addresses over the LAN
 * Port 5000 - This is the default port number to access the website
 
+
 ## Related Python Modules
+
     pip3 install numpy
     pip3 install pandas
     pip3 install matplotlib
     pip3 install flask
 
+
 ## Features
 
 * Data entry of  items forgotten by an associate
 * List of Associates (Workers)
-  * *Total number of records
+  * Total number of records
 * Import amenities from data entry list
 * List of amenities that the associates forgot to replace on specified dates and rooms.
   * Number of records
@@ -63,18 +70,21 @@ If you use this software, a feedback is expected.
 
 All pages are printer friendly.
 
+
 ## Tested in
 
 This product has been tested to run in:
 
+
 ### Operating Systems
 
-Server script of this product has been tested to run in:
+Server side script of this product has been found (roughly tested) to run in:
 
 * [Raspbian](https://www.raspberrypi.org)
 * [macOS](https://en.wikipedia.org/wiki/MacOS)
 * [MX Linux](https://mxlinux.org)
 * [Windows 10](https://www.microsoft.com/en-ca/windows/get-windows-10)
+
 
 ### Browsers
 
@@ -82,6 +92,7 @@ Server script of this product has been tested to run in:
 * [Opera](https://www.opera.com/download)
 * [Chrome](https://www.google.com/chrome/)
 * [Safari](https://support.apple.com/downloads/safari): ([DATALIST](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) not supported, [Can I use?](https://caniuse.com/#feat=datalist))
+
 
 ## Routes Extraction
 
