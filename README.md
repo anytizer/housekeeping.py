@@ -42,6 +42,12 @@ If you use this software, a feedback is expected.
 * Browse the website: [http://0.0.0.0:5000/](http://0.0.0.0:5000/) with your own IP Addresses over the LAN
 * Port 5000 - This is the default port number to access the website
 
+## Related Python Modules
+    pip3 install numpy
+    pip3 install pandas
+    pip3 install matplotlib
+    pip3 install flask
+
 ## Features
 
 * Data entry of  items forgotten by an associate
