@@ -1,6 +1,6 @@
 # housekeeping.py
 
-List of Amenities and Stuffs forgotten by your housekeeping department.
+List of Amenities and Items forgotten by your housekeeping department.
 
 Source code of this software is made public, assuming that it would be helpful for the related industry.
 If you use this software, a feedback is expected.
