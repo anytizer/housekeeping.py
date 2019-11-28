@@ -11,7 +11,7 @@
                 <th>When?</th>
                 <th>Associate</th>
                 <th>Room #</th>
-                <th>Amenities/Stuffs</th>
+                <th>Amenities/Items</th>
                 <th>Area Not Cleaned</th>
                 <th>Remarks</th>
                 <th>Action</th>
@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <input class="w3-input w3-border" list="missingstuffs_defined" maxlength="20" name="missingstuffs"
-                           ng-model="missing.missingstuffs" placeholder="Forgotten Stuffs" type="text">
+                           ng-model="missing.missingstuffs" placeholder="Forgotten Items" type="text">
                     <datalist id="missingstuffs_defined">
                         <option ng-repeat="amenity in amenities" value="{{amenity[1]}}">{{amenity[1]}}</option>
                     </datalist>
@@ -76,7 +76,7 @@
         <th>When?</th>
         <th>Associate</th>
         <th>Room #</th>
-        <th>Amenities/Stuffs</th>
+        <th>Amenities/Items</th>
         <th>Area Not Cleaned</th>
         <th>Remarks</th>
         <th class="no-print">Action</th>
