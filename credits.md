@@ -1,2 +1,1 @@
-The "H" favicon (https://www.favicon-generator.org)
-
+*Favicon*: The "H" favicon (https://www.favicon-generator.org/)

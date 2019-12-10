@@ -1,5 +1,6 @@
 # Done
 
+* Rename `missing` to `forgotten`
 * Increase the text limit to 50 characters in ANC.
 * Report in ascending order, list by month
 * Monthly report print.
@@ -14,3 +15,7 @@
 * Clear who.associate once data is entered.
 * Monthly Report in ascending order
 * Add requirements.txt
+* Generate graph using MatPlotLib.
+* Include graphs in reports pages.
+* Missing stuffs zero, ANC zero: Do not plot in graph.
+* Fix xlabel, ylabel in the graph

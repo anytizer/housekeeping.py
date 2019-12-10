@@ -1,6 +1,6 @@
 # ToDo
 
-* Rename `missing` to `forgotten`
+
 * Config mode turn off/on admin features
 * Route robots, favicon, images
 * Full associate profile
@@ -13,10 +13,7 @@
 * Search by date
 * Amenities cases count should be limited to recent dates
 * Multi user graph generation
-* Include graphs in reports pages.
-* Missing stuffs zero, ANC zero: Do not plot in graph.
-* Fix xlabel, ylabel in the graph
-* Generate graph using MatPlotLib.
+
 
 ## Not doing:
 

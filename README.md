@@ -1,6 +1,8 @@
 # housekeeping.py
 
-List of Amenities and Items forgotten by your housekeeping department.
+List of Amenities and Items forgotten by your housekeeping department. This is a corrections making software to set your standards.
+
+![Logo](static/images/housekeeping.png)
 
 Source code of this software is made public, assuming that it would be helpful for the related industry.
 If you use this software, a feedback is expected.
@@ -22,7 +24,7 @@ If you use this software, a feedback is expected.
 * [realer.py](realer.py) - Installs the database contents
 * [faker.py](faker.py) - Optionally populate the dummy data
 * [importer.py](importer.py) - Imports data from another database - sample
-* [housekeeping.py](housekeeping.py) - Main web server API scripts
+* [housekeeping.py](housekeeping.py) - Main web server API scripts based on Flask
 
 
 ### Database
@@ -30,16 +32,16 @@ If you use this software, a feedback is expected.
 * **housekeeping.db** - SQLite database file
 
 
-## Installation
+## Installation Procedures
 
-* Install `python 3` and `pip 3` on a server.
+* Install `python 3` and `pip 3` on your server.
 * [Install Flask](https://flask.palletsprojects.com/en/1.1.x/installation/): `pip install flask`
-* Checkout this project using Git.
+* Checkout this project using Git: `git clone https://github.com/anytizer/housekeeping.py.git`.
 * `cd housekeeping.py`
 * Run `python3 install.py` to create database structure.
-* Edit `realer.py` with your own list of associates and amenities.
-* Run `python3 realer.py`
-* Optionally, run sample data: `python3 faker.py`
+* Edit `realer.py` with your own list of associates and amenities to correct.
+* Run `python3 realer.py`.
+* Optionally, run sample data: `python3 faker.py`.
 * touch static/images/missing-amenities.png
 * touch static/images/missing-associates.png
 * Run the script from terminal: `python3 housekeeping.py`
@@ -48,6 +50,8 @@ If you use this software, a feedback is expected.
 
 
 ## Related Python Modules
+
+It can generate a graph of missing items. For which you may need the following modules:
 
     pip3 install numpy
     pip3 install pandas
