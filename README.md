@@ -84,7 +84,7 @@ This product has been tested to run in:
 
 Server side script of this product has been found (roughly tested) to run in:
 
-* [Raspbian](https://www.raspberrypi.org)
+* [Raspbian](https://www.raspberrypi.org/downloads/raspbian/)
 * [macOS](https://en.wikipedia.org/wiki/MacOS)
 * [MX Linux](https://mxlinux.org)
 * [Windows 10](https://www.microsoft.com/en-ca/windows/get-windows-10)
