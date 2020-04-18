@@ -1,16 +1,13 @@
 from flask import Flask, url_for, render_template, request
 from flask import Response
-from flask import g
 
 import json
-import sys
 import sqlite3
 import uuid
 from datetime import datetime, timedelta
 from os import path
 import hashlib
 
-import numpy as np
 import pandas as pd
 
 import config
@@ -23,7 +20,7 @@ ROOT_PATH = app.root_path
 connection = sqlite3.connect(ROOT_PATH + "/" + config.DATABASE, check_same_thread=False)
 
 
-# For long/multiline SQLs, read them from file
+# For long/multiline SQLs, read them from a file
 def sqlfile(file=""):
     physical_file = "{0}/sqls/{1}".format(ROOT_PATH, file)
     f = open(physical_file, "r")
