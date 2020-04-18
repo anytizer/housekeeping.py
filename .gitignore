@@ -14,3 +14,4 @@
 /static/images/missing-amenities.png
 /static/images/missing-associates.png
 /venv
+/static/js/**/*.map
