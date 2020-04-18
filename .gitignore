@@ -16,3 +16,4 @@
 /venv
 /static/js/**/*.map
 /*.lock
+/static/js/angularjs/*.map
